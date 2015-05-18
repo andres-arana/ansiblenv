@@ -1,0 +1,20 @@
+---
+- name: Install vim
+  apt: name=vim-gtk state=latest
+  sudo: yes
+
+- name: Install software dependencies for what we use with vim
+  apt: name=silversearcher-ag state=latest
+  sudo: yes
+
+- name: Clone the vim dotfiles repository
+  git: repo=https://andres-arana@github.com/andres-arana/dotfiles-vim.git dest=~/.vim
+
+- name: Link vimrc to the cloned versions
+  file: src=~/.vim/vimrc dest=~/.vimrc state=link force=yes
+
+- name: Create the bundles directory
+  file: dest=~/.vim/bundles state=directory
+
+- name: Install neobundle
+  git: repo=https://github.com/Shougo/neobundle.vim dest=~/.vim/bundles/neobundle.vim

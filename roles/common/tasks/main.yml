@@ -1,0 +1,5 @@
+---
+- name: Install or update git for cloning the dotfiles repositories
+  apt: name=git state=latest
+  sudo: yes
+

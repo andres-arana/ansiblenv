@@ -1,0 +1,13 @@
+---
+- name: Install cURL for API http request making
+  apt: name=curl state=latest
+  sudo: yes
+
+- name: Install tree for better directory browsing
+  apt: name=tree state=latest
+  sudo: yes
+
+- name: Install jshon for json API parsing
+  apt: name=jshon state=latest
+  sudo: yes
+  

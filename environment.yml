@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  roles:
+    - common
+    - bash
+    - autojump
+    - software
+    - git
+    - vim
+    - vagrant
