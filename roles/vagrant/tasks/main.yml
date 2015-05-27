@@ -1,6 +1,7 @@
 ---
   - name: Check if vagrant is installed
     command: dpkg -s vagrant
+    ignore_errors: true
     register: vagrant_installed
 
   - name: Download the vagrant installer
@@ -17,3 +18,6 @@
 
   - name: Link the invm script to the local binaries
     file: src=~/.vagrant/invm dest=~/Binaries/invm state=link force=yes
+
+  - name: Link the invmf script to the local binaries
+    file: src=~/.vagrant/invmf dest=~/Binaries/invmf state=link force=yes
