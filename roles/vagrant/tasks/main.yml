@@ -13,11 +13,22 @@
     sudo: yes
     when: vagrant_installed.rc != 0
 
+  - name: Check if virtual box is installed
+    command: dpkg -s virtualbox
+    ignore_errors: true
+    register: virtualbox_installed
+
+  - name: Download the virtualbox installer
+    get_url: url=http://download.virtualbox.org/virtualbox/5.0.0/virtualbox-5.0_5.0.0-101573~Ubuntu~trusty_amd64.deb dest=/tmp/virtualbox.deb
+    when: virtualbox_installed.rc != 0
+
+  - name: Install the virtual box package
+    apt: deb=/tmp/virtualbox.deb
+    sudo: yes
+    when: virtualbox_installed.rc != 0
+
   - name: Clone the vagrant dotfiles and utility scripts
     git: repo=https://andres-arana@github.com/andres-arana/dotfiles-vagrant.git dest=~/.vagrant
 
   - name: Link the invm script to the local binaries
     file: src=~/.vagrant/invm dest=~/Binaries/invm state=link force=yes
-
-  - name: Link the invmf script to the local binaries
-    file: src=~/.vagrant/invmf dest=~/Binaries/invmf state=link force=yes

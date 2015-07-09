@@ -1,2 +1,2 @@
 #! /bin/bash
-ansible-playbook -K environment.yml
+ansible-playbook environment.yml
