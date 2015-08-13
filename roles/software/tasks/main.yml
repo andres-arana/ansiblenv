@@ -10,4 +10,34 @@
 - name: Install jshon for json API parsing
   apt: name=jshon state=latest
   sudo: yes
-  
+
+- name: Install archive managers
+  apt: name={{item}} state=latest
+  sudo: yes
+  with_items:
+  - unace
+  - unrar
+  - zip
+  - unzip
+  - p7zip-full
+  - p7zip-rar
+  - sharutils
+  - rar
+  - uudeview
+  - mpack
+  - arj
+  - cabextract
+  - file-roller
+
+- name: Install JAVA
+  apt: name=openjdk-7-jdk state=latest
+  sudo: yes
+
+- name: Install general utilities
+  apt: name={{item}} state=latest
+  sudo: yes
+  with_items:
+    - gparted
+    - calibre
+    - filezilla
+
