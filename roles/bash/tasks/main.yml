@@ -14,5 +14,3 @@
 - name: Link bashprofile to the cloned versions
   file: src=~/.bash/bashprofile.sh dest=~/.bash_profile state=link force=yes
 
-- name: Link bashprompt to the cloned versions
-  file: src=~/.bash/bashprompt.sh dest=~/.bash.d/prompt.bash state=link force=yes

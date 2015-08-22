@@ -5,7 +5,7 @@
     - bash
     - autojump
     - software
-    - terminator
     - git
     - vim
     - vagrant
+    - tmux

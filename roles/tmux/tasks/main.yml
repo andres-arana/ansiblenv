@@ -1,0 +1,14 @@
+---
+- name: Install xclip for clipboard management
+  apt: name=xclip state=latest
+  sudo: yes
+
+- name: Clone the tmux dotfiles repository
+  git: repo=https://andres-arana@github.com/andres-arana/dotfiles-tmux.git dest=~/.tmux
+
+- name: Link tmux.conf to the cloned versions
+  file: src=~/.tmux/tmuxconf dest=~/.tmux.conf state=link force=yes
+
+- name: Add the tmux alias
+  copy: content="alias tmux='TERM=xterm-256color tmux'" dest=~/.bash.d/tmux.bash force=yes
+
