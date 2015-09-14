@@ -26,7 +26,7 @@
     sudo: yes
 
   - name: Install virtualbox
-    apt: name=virtualbox-5.0 state=latest
+    apt: name=virtualbox-4.3 state=latest
     sudo: yes
 
   - name: Install DKMS to ensure virtualization kernel is mantained
