@@ -29,15 +29,3 @@
   - cabextract
   - file-roller
 
-- name: Install JAVA
-  apt: name=openjdk-7-jdk state=latest
-  sudo: yes
-
-- name: Install general utilities
-  apt: name={{item}} state=latest
-  sudo: yes
-  with_items:
-    - gparted
-    - calibre
-    - filezilla
-
