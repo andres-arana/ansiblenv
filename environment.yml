@@ -1,7 +1,6 @@
 ---
 - hosts: localhost
   roles:
-    - common
     - bash
     - autojump
     - software
