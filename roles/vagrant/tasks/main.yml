@@ -25,12 +25,12 @@
     apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian vivid contrib"
     sudo: yes
 
-  - name: Install virtualbox
-    apt: name=virtualbox-4.3 state=latest
-    sudo: yes
-
   - name: Install DKMS to ensure virtualization kernel is mantained
     apt: name=dkms state=present
+    sudo: yes
+
+  - name: Install virtualbox
+    apt: name=virtualbox-5.0 state=latest
     sudo: yes
 
   - name: Clone the vagrant dotfiles and utility scripts
