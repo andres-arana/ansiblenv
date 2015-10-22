@@ -1,0 +1,15 @@
+---
+- name: Install other utilities
+  apt: name={{item}} state=latest
+  sudo: yes
+  with_items:
+    # Partition editor
+    - gparted
+    # Virtual library
+    - calibre
+    # FTP browsing
+    - filezilla
+    # PDF viewer
+    - zathura
+
+

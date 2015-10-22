@@ -4,6 +4,7 @@
     - bash
     - autojump
     - software
+    - utilities
     - git
     - vim
     - vagrant
