@@ -22,7 +22,7 @@
     sudo: yes
 
   - name: Add virtualbox repository to apt sources
-    apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian vivid contrib"
+    apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian wily contrib"
     sudo: yes
 
   - name: Install DKMS to ensure virtualization kernel is mantained
