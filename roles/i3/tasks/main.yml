@@ -1,7 +1,7 @@
 ---
 - name: Install i3wm dependencies
   apt: name={{item}} state=latest
-  sudo: yes
+  become: yes
   with_items:
     - i3
     - i3blocks
@@ -20,22 +20,9 @@
     - libxkbcommon-dev
     - libxkbcommon-x11-dev
 
-- name: Clone the i3 gaps repository
-  git: repo=https://github.com/Airblader/i3.git dest=~/.i3gaps
-
-- name: Compile i3
-  shell: make
-  args:
-    chdir: ~/.i3gaps
-
-- name: Install i3
-  shell: sudo make install
-  args:
-    chdir: ~/.i3gaps
-
 - name: Install other i3 config dependencies
   apt: name={{item}} state=latest
-  sudo: yes
+  become: yes
   with_items:
     - feh
 

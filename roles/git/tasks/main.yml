@@ -7,9 +7,9 @@
 
 - name: Install tig for commandline repository browsing
   apt: name=tig state=latest
-  sudo: yes
+  become: yes
 
 - name: Install gitk for GUI browsing
   apt: name=gitk state=latest
-  sudo: yes
+  become: yes
 

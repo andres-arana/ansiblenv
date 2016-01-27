@@ -1,7 +1,7 @@
 ---
 - name: Install autojump
   apt: name=autojump state=latest
-  sudo: yes
+  become: yes
 
 - name: Install the autojump initializer
   copy: content=". /usr/share/autojump/autojump.sh" dest=~/.bash.d/autojump.bash force=yes

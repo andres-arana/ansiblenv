@@ -1,11 +1,11 @@
 ---
 - name: Install xclip for clipboard management
   apt: name=xclip state=latest
-  sudo: yes
+  become: yes
 
 - name: Install tmux itself
   apt: name=tmux state=latest
-  sudo: yes
+  become: yes
 
 - name: Clone the tmux dotfiles repository
   git: repo=https://andres-arana@github.com/andres-arana/dotfiles-tmux.git dest=~/.tmux

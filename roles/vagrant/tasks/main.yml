@@ -10,28 +10,28 @@
 
   - name: Install the vagrant package
     apt: deb=/tmp/vagrant.deb
-    sudo: yes
+    become: yes
     when: vagrant_installed.rc != 0
 
   - name: Install vagrant commandline completion
     get_url: url=https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant dest=/etc/bash_completion.d/vagrant
-    sudo: yes
+    become: yes
 
   - name: Add virtualbox secure apt key
     apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc
-    sudo: yes
+    become: yes
 
   - name: Add virtualbox repository to apt sources
     apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian wily contrib"
-    sudo: yes
+    become: yes
 
   - name: Install DKMS to ensure virtualization kernel is mantained
     apt: name=dkms state=present
-    sudo: yes
+    become: yes
 
   - name: Install virtualbox
     apt: name=virtualbox-5.0 state=latest
-    sudo: yes
+    become: yes
 
   - name: Clone the vagrant dotfiles and utility scripts
     git: repo=https://andres-arana@github.com/andres-arana/dotfiles-vagrant.git dest=~/.vagrant

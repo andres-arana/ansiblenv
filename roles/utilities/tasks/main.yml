@@ -1,7 +1,7 @@
 ---
 - name: Install other utilities
   apt: name={{item}} state=latest
-  sudo: yes
+  become: yes
   with_items:
     # Partition editor
     - gparted

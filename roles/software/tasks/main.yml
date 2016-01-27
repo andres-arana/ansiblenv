@@ -1,23 +1,23 @@
 ---
 - name: Install cURL for API http request making
   apt: name=curl state=latest
-  sudo: yes
+  become: yes
 
 - name: Install tree for better directory listing
   apt: name=tree state=latest
-  sudo: yes
+  become: yes
 
 - name: Install midnight commander for browsing directories
   apt: name=mc state=latest
-  sudo: yes
+  become: yes
 
 - name: Install jshon for json API parsing
   apt: name=jshon state=latest
-  sudo: yes
+  become: yes
 
 - name: Install archive managers
   apt: name={{item}} state=latest
-  sudo: yes
+  become: yes
   with_items:
   - unace
   - unrar
