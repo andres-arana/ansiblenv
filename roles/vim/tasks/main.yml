@@ -18,8 +18,6 @@
 - name: Link vimrc to the cloned versions
   file: src=~/.vim/vimrc dest=~/.vimrc state=link force=yes
 
-- name: Create the bundles directory
-  file: dest=~/.vim/bundles state=directory
+- name: Create vim.d directory
+  file: path=~/.vim.d state=directory
 
-- name: Install neobundle
-  git: repo=https://github.com/Shougo/neobundle.vim dest=~/.vim/bundles/neobundle.vim

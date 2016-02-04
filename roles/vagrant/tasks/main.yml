@@ -39,3 +39,6 @@
   - name: Link the invm script to the local binaries
     file: src=~/.vagrant/invm dest=~/Binaries/invm state=link force=yes
 
+  - name: Link the vup script to the local binaries
+    file: src=~/.vagrant/vup dest=~/Binaries/vup state=link force=yes
+
