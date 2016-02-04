@@ -4,8 +4,13 @@
   become: yes
 
 - name: Install software dependencies for what we use with vim
-  apt: name=silversearcher-ag state=latest
+  apt: name={{item}} state=latest
   become: yes
+  with_items:
+    - silversearcher-ag
+    - build-essential
+    - cmake
+    - python-dev
 
 - name: Clone the vim dotfiles repository
   git: repo=https://andres-arana@github.com/andres-arana/dotfiles-vim.git dest=~/.vim
