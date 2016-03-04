@@ -1,12 +1,11 @@
 ---
 - hosts: localhost
   roles:
-    - bash
     - autojump
-    - software
-    - utilities
+    - bash
     - git
-    - vim
-    - vagrant
+    - software
     - tmux
-    - i3
+    - utilities
+    - vagrant
+    - vim

@@ -12,12 +12,12 @@
     - cmake
     - python-dev
 
-- name: Clone the vim dotfiles repository
-  git: repo=https://andres-arana@github.com/andres-arana/dotfiles-vim.git dest=~/.vim
+- name: Create .vim directory
+  file: path=~/.vim state=directory
 
-- name: Link vimrc to the cloned versions
-  file: src=~/.vim/vimrc dest=~/.vimrc state=link force=yes
+- name: Setup .vimrc
+  copy: src=files/.vimrc dest=~/.vimrc
 
-- name: Create vim.d directory
-  file: path=~/.vim.d state=directory
+- name: Setup autoloaded scripts
+  copy: src=files/autoload dest=~/.vim/
 

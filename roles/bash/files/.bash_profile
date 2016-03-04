@@ -1,0 +1,3 @@
+# Source bashrc
+. "$HOME/.bashrc"
+

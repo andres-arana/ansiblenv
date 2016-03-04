@@ -7,10 +7,6 @@
   apt: name=tree state=latest
   become: yes
 
-- name: Install midnight commander for browsing directories
-  apt: name=mc state=latest
-  become: yes
-
 - name: Install jshon for json API parsing
   apt: name=jshon state=latest
   become: yes

@@ -1,0 +1,104 @@
+################################################################################
+# Startup settings
+################################################################################
+# Don't check mail when opening terminal.
+unset MAILCHECK
+
+################################################################################
+# Shell options
+################################################################################
+# Append to bash_history if the console app quits
+shopt -s histappend
+
+# Recalculate columns and rows after each command
+shopt -s checkwinsize
+
+# Use recursive globs
+shopt -s globstar
+
+# Use vim line editing mode
+set -o vi
+
+################################################################################
+# History options
+################################################################################
+# Bash History
+export HISTCONTROL=erasedups
+
+# Resize history size
+export HISTSIZE=999
+
+################################################################################
+# PATH configuration
+################################################################################
+# Add the user binaries directory
+export PATH=$PATH:$HOME/.bash.d/bin
+
+################################################################################
+# Startup settings
+################################################################################
+# Prompt configuration
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_DESCRIBE_STYLE="branch"
+GIT_PS1_SHOWUPSTREAM="auto git"
+export PS1="\[\e[36m\]\u\[\e[m\]@\[\e[34m\]\h\[\e[m\]: \w \[\e[33m\]\`__git_ps1\`\[\e[m\]\n(\!:\#) \$ "
+
+################################################################################
+# Aliases
+################################################################################
+# Directory traversal
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"
+
+# Directory listing
+alias ls="ls --color=auto"
+alias ll="ls -lhA"
+alias la="ls -a"
+alias l="ls"
+
+# Directory management
+alias mkdir="mkdir -pv"
+
+# History management
+alias h="history"
+
+# Safety nets
+alias rm="rm -I --preserve-root"
+alias mv="mv -i"
+alias cp="cp -i"
+alias ln="ln -i"
+alias chown="chown --preserve-root"
+alias chmod="chmod --preserve-root"
+alias chgrp="chgrp --preserve-root"
+
+# Power management
+alias reboot="sudo shutdown -r now"
+alias poweroff="sudo shutdown -P now"
+
+
+################################################################################
+# Completions
+################################################################################
+# Enable completions
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+################################################################################
+# Local extension
+################################################################################
+# Source any scripts in home directory
+if [[ -n `ls -A $HOME/.bash.d/` ]]; then
+  for file in $HOME/.bash.d/*.bash; do
+    source $file
+  done
+fi
+

@@ -1,10 +1,4 @@
 ---
-- name: Clone the git dotfiles repository
-  git: repo=https://andres-arana@github.com/andres-arana/dotfiles-git.git dest=~/.git
-
-- name: Link gitconfig to the cloned version
-  file: src=~/.git/gitconfig dest=~/.gitconfig state=link force=yes
-
 - name: Install tig for commandline repository browsing
   apt: name=tig state=latest
   become: yes
@@ -12,4 +6,10 @@
 - name: Install gitk for GUI browsing
   apt: name=gitk state=latest
   become: yes
+
+- name: Setup .gitconfig
+  copy: src=files/.gitconfig dest=~/.gitconfig
+
+- name: Setup .gitignore
+  copy: src=files/.gitignore dest=~/.gitignore
 

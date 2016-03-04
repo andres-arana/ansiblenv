@@ -1,16 +1,14 @@
 ---
-- name: Clone the bash dotfiles repository
-  git: repo=https://andres-arana@github.com/andres-arana/dotfiles-bash.git dest=~/.bash
 
-- name: Create the bash directory
+- name: Create the bash extensions directory
   file: dest=~/.bash.d/ state=directory
 
 - name: Create the user binaries directory
-  file: dest=~/Binaries state=directory
+  file: dest=~/.bash.d/bin/ state=directory
 
-- name: Link bashrc to the cloned versions
-  file: src=~/.bash/bashrc.sh dest=~/.bashrc state=link force=yes
+- name: Setup .bashrc
+  copy: src=files/.bashrc dest=~/.bashrc
 
-- name: Link bashprofile to the cloned versions
-  file: src=~/.bash/bashprofile.sh dest=~/.bash_profile state=link force=yes
+- name: Setup .bash_profile
+  copy: src=files/.bash_profile dest=~/.bash_profile
 
