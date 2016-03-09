@@ -1,0 +1,16 @@
+---
+- name: Install emacs
+  apt: name=emacs state=latest
+  become: yes
+
+- name: Install software dependencies for what we use with vim
+  apt: name={{item}} state=latest
+  become: yes
+  with_items:
+    - silversearcher-ag
+    - build-essential
+    - cmake
+    - python-dev
+
+- name: Install spacemacs
+  git: dest=~/.emacs.d repo=https://github.com/syl20bnr/spacemacs

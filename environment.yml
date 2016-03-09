@@ -3,6 +3,7 @@
   roles:
     - autojump
     - bash
+    - emacs
     - git
     - software
     - tmux
