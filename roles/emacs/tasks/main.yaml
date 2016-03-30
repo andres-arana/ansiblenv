@@ -8,9 +8,6 @@
   become: yes
   with_items:
     - silversearcher-ag
-    - build-essential
-    - cmake
-    - python-dev
 
-- name: Install spacemacs
-  git: dest=~/.emacs.d repo=https://github.com/syl20bnr/spacemacs
+- name: Setup .spacemacs
+  copy: src=files/spacemacs dest=~/.spacemacs

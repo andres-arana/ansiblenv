@@ -8,4 +8,4 @@
   become: yes
 
 - name: Setup .tmux.conf
-  copy: src=files/.tmux.conf dest=~/.tmux.conf
+  copy: src=files/tmux.conf dest=~/.tmux.conf

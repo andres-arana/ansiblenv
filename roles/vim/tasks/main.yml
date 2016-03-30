@@ -16,7 +16,7 @@
   file: path=~/.vim state=directory
 
 - name: Setup .vimrc
-  copy: src=files/.vimrc dest=~/.vimrc
+  copy: src=files/vimrc dest=~/.vimrc
 
 - name: Setup autoloaded scripts
   copy: src=files/autoload dest=~/.vim/

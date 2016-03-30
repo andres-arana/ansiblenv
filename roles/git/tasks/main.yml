@@ -8,8 +8,7 @@
   become: yes
 
 - name: Setup .gitconfig
-  copy: src=files/.gitconfig dest=~/.gitconfig
+  copy: src=files/gitconfig dest=~/.gitconfig
 
 - name: Setup .gitignore
-  copy: src=files/.gitignore dest=~/.gitignore
-
+  copy: src=files/gitignore dest=~/.gitignore

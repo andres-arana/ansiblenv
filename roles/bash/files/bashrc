@@ -16,9 +16,6 @@ shopt -s checkwinsize
 # Use recursive globs
 shopt -s globstar
 
-# Use vim line editing mode
-set -o vi
-
 ################################################################################
 # History options
 ################################################################################

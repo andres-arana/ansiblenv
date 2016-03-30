@@ -7,8 +7,7 @@
   file: dest=~/.bash.d/bin/ state=directory
 
 - name: Setup .bashrc
-  copy: src=files/.bashrc dest=~/.bashrc
+  copy: src=files/bashrc dest=~/.bashrc
 
 - name: Setup .bash_profile
-  copy: src=files/.bash_profile dest=~/.bash_profile
-
+  copy: src=files/bash_profile dest=~/.bash_profile

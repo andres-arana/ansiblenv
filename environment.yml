@@ -3,6 +3,7 @@
   roles:
     - autojump
     - bash
+    - docker
     - emacs
     - git
     - software
