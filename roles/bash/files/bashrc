@@ -16,6 +16,9 @@ shopt -s checkwinsize
 # Use recursive globs
 shopt -s globstar
 
+# Enable vi mode
+set -o vi
+
 ################################################################################
 # History options
 ################################################################################
