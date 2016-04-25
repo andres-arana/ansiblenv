@@ -1,9 +1,6 @@
 [core]
   excludesfile = ~/.gitignore
 
-[remote]
-  prune = true
-
 [color]
   branch = auto
   diff = auto
@@ -26,22 +23,10 @@
   untracked = cyan
 
 [alias]
-  aa = add . --all
-  ap = add --patch
-  s = status
-  i = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
-  b = branch
-  ci = commit
-  co = checkout
-  df = diff
-  dc = diff --cached
-  f = fetch
-  p = push --force-with-lease
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  lb = branch --all
-  ui = !tig --all
-  fts = reset HEAD --hard
+  precommit = diff --cached
+  ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+  branches = branch --all
+  nevermind = reset HEAD --hard
 
 [credential]
   helper = cache --timeout=3600
