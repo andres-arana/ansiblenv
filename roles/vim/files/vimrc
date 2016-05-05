@@ -56,9 +56,6 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 " *****************************************************************************
 " Navigation
 " *****************************************************************************
-" Text objects
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
 " Improved % navigation matching
 Plug 'vim-scripts/matchit.zip'
 " Match HTML tags in % navigation

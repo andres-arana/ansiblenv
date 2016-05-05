@@ -23,10 +23,7 @@
   untracked = cyan
 
 [alias]
-  precommit = diff --cached
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
-  branches = branch --all
-  nevermind = reset HEAD --hard
 
 [credential]
   helper = cache --timeout=3600

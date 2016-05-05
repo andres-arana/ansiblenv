@@ -18,6 +18,7 @@ shopt -s globstar
 
 # Enable vi mode
 set -o vi
+export EDITOR=vi
 
 ################################################################################
 # History options

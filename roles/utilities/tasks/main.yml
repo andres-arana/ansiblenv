@@ -12,4 +12,6 @@
     # PDF viewer
     - zathura
 
+- name: Install movew2d
+  copy: src=files/mvw2d dest=~/.bash.d/bin/mvw2d
 
