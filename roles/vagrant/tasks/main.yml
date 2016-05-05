@@ -16,9 +16,10 @@
   - name: Install vagrant commandline completion
     get_url: url=https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant dest=/etc/bash_completion.d/vagrant
     become: yes
+    when: vagrant_installed.rc != 0
 
   - name: Add virtualbox secure apt key
-    apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc
+    apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc
     become: yes
 
   - name: Add virtualbox repository to apt sources
