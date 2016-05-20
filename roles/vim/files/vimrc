@@ -177,7 +177,6 @@ nnoremap <leader>vc :VimuxCloseRunner<cr>
 nnoremap <leader>vz :VimuxZoomRunner<cr>
 nnoremap <leader>vi :VimuxInspectRunner<cr>
 nnoremap <leader>vl :VimuxRunLastCommand<cr>
-nnoremap <leader>vv :VimuxRunCommand('vagrant up && vagrant ssh -c "cd /vagrant; bash"')<cr>
 " Fireplace
 nnoremap <leader>cs :Piggieback (adzerk.boot-cljs-repl/repl-env)<cr>
 nnoremap <leader>cc :Connect<cr>
