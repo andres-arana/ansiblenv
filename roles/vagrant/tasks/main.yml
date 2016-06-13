@@ -23,7 +23,7 @@
     become: yes
 
   - name: Add virtualbox repository to apt sources
-    apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian xenial contrib"
+    apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian xenial contrib" filename="virtualbox"
     become: yes
 
   - name: Install DKMS to ensure virtualization kernel is mantained

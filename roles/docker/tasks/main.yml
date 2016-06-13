@@ -12,7 +12,7 @@
   become: yes
 
 - name: Ensure docker repository is available
-  apt_repository: repo="deb https://apt.dockerproject.org/repo ubuntu-wily main"
+  apt_repository: repo="deb https://apt.dockerproject.org/repo ubuntu-xenial main" filename="docker"
   become: yes
 
 - name: Ensure docker is installed
