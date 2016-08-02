@@ -16,6 +16,8 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/syntastic'
 " Paired mappings
 Plug 'tpope/vim-unimpaired'
+" Indent guides
+Plug 'nathanaelkane/vim-indent-guides'
 " *****************************************************************************
 " UI
 " *****************************************************************************
@@ -59,7 +61,7 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 " Improved % navigation matching
 Plug 'vim-scripts/matchit.zip'
 " Match HTML tags in % navigation
-Plug 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
+Plug 'gregsexton/MatchTag'
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
 " *****************************************************************************
@@ -128,6 +130,7 @@ autocmd BufRead,BufNewFile *.boot set filetype=clojure
 " PLUGIN SETTINGS
 " *****************************************************************************
 let g:plug_timeout=900
+let g:indent_guides_enable_on_vim_startup = 1
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:airline_left_sep=''
@@ -191,7 +194,6 @@ nmap <leader>f$ :%s/\s*$//g<cr>
 set backspace=indent,eol,start
 " Show line numbers
 set number
-set relativenumber
 " Display tabs and trailing spaces
 set list
 set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
@@ -257,9 +259,6 @@ nnoremap K <nop>
 nnoremap Q @q
 " Make Y consistent
 nnoremap Y y$
-" Visual indent does not exit visual mode
-vnoremap < <gv
-vnoremap > >gv
 " *****************************************************************************
 " COLORSCHEME
 " *****************************************************************************
