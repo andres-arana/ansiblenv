@@ -10,14 +10,16 @@ unset MAILCHECK
 # Append to bash_history if the console app quits
 shopt -s histappend
 
+# Show the history command before executing it
+shopt -s histverify
+
 # Recalculate columns and rows after each command
 shopt -s checkwinsize
 
 # Use recursive globs
 shopt -s globstar
 
-# Enable vi mode
-set -o vi
+# Ensure vi is the default editor
 export EDITOR=vi
 
 # Disable C-s hanging the terminal up

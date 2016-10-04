@@ -84,6 +84,8 @@ Plug 'slim-template/vim-slim'
 " *****************************************************************************
 " Additional javascript syntax
 Plug 'pangloss/vim-javascript'
+" JSX syntax
+Plug 'mxw/vim-jsx'
 " Coffeescript syntax
 Plug 'kchmck/vim-coffee-script'
 " Livescript syntax
