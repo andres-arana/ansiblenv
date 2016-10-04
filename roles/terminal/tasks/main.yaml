@@ -1,3 +1,5 @@
 ---
 - name: Configure xfce4-terminal
-  copy: src=files/terminalrc dest=~/.config/xfce4/terminal/terminalrc
+  copy:
+    src: files/terminalrc
+    dest: ~/.config/xfce4/terminal/terminalrc

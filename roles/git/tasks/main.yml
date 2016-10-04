@@ -1,14 +1,19 @@
 ---
-- name: Install tig for commandline repository browsing
-  apt: name=tig state=latest
-  become: yes
-
-- name: Install gitk for GUI browsing
-  apt: name=gitk state=latest
+- name: Install git related software
+  apt:
+    name: 
+      - tig
+      - gitk
+      - git
+    state: latest
   become: yes
 
 - name: Setup .gitconfig
-  copy: src=files/gitconfig dest=~/.gitconfig
+  copy:
+    src: files/gitconfig
+    dest: ~/.gitconfig
 
 - name: Setup .gitignore
-  copy: src=files/gitignore dest=~/.gitignore
+  copy:
+    src: files/gitignore
+    dest: ~/.gitignore

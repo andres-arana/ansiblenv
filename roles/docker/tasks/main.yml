@@ -1,20 +1,31 @@
 ---
 
-- name: Ensure APT https transport is available
-  apt: name={{item}} state=latest
+- name: Ensure the system can use the HTTPS transport for APT
+  stat:
+    path: /usr/lib/apt/methods/https
+  register: apt_https_transport
+
+- name: Install HTTPS transport for APT
+  apt:
+    name: apt-transport-https
+    state: installed
   become: yes
-  with_items:
-    - apt-transport-https
-    - ca-certificates
+  when: not apt_https_transport.stat.exists
 
 - name: Ensure docker apt key is available
-  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80 id=58118E89F3A912897C070ADBF76221572C52609D
+  apt_key:
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    id: 58118E89F3A912897C070ADBF76221572C52609D
   become: yes
 
 - name: Ensure docker repository is available
-  apt_repository: repo="deb https://apt.dockerproject.org/repo ubuntu-xenial main" filename="docker"
+  apt_repository:
+    repo: "deb https://apt.dockerproject.org/repo ubuntu-xenial main"
+    filename: "docker"
   become: yes
 
 - name: Ensure docker is installed
-  apt: name=docker-engine state=latest
+  apt:
+    name: docker-engine
+    state: latest
   become: yes

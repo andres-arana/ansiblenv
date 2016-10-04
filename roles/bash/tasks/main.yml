@@ -1,13 +1,21 @@
 ---
 
 - name: Create the bash extensions directory
-  file: dest=~/.bash.d/ state=directory
+  file:
+    dest: ~/.bash.d/
+    state: directory
 
 - name: Create the user binaries directory
-  file: dest=~/.bash.d/bin/ state=directory
+  file:
+    dest: ~/.bash.d/bin/
+    state: directory
 
 - name: Setup .bashrc
-  copy: src=files/bashrc dest=~/.bashrc
+  copy:
+    src: files/bashrc
+    dest: ~/.bashrc
 
 - name: Setup .bash_profile
-  copy: src=files/bash_profile dest=~/.bash_profile
+  copy:
+    src: files/bash_profile
+    dest: ~/.bash_profile

@@ -1,0 +1,8 @@
+#! /bin/bash
+cp ~/.bash_profile roles/bash/files/bash_profile
+cp ~/.bashrc roles/bash/files/bashrc
+cp ~/.gitconfig roles/git/files/gitconfig
+cp ~/.gitignore roles/git/files/gitignore
+cp ~/.tmux.conf roles/tmux/files/tmux.conf
+cp ~/.vimrc roles/vim/files/vimrc
+cp -r ~/.vim/ultisnips roles/vim/files/ultisnips

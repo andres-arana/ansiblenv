@@ -5,35 +5,49 @@
     register: vagrant_installed
 
   - name: Download the vagrant installer
-    get_url: url=https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb dest=/tmp/vagrant.deb
+    get_url:
+      url: https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+      dest: /tmp/vagrant.deb
     when: vagrant_installed.rc != 0
 
   - name: Install the vagrant package
-    apt: deb=/tmp/vagrant.deb
+    apt:
+      deb: /tmp/vagrant.deb
     become: yes
     when: vagrant_installed.rc != 0
 
   - name: Install vagrant commandline completion
-    get_url: url=https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant dest=/etc/bash_completion.d/vagrant
+    get_url:
+      url: https://raw.github.com/kura/vagrant-bash-completion/master/etc/bash_completion.d/vagrant
+      dest: /etc/bash_completion.d/vagrant
     become: yes
     when: vagrant_installed.rc != 0
 
   - name: Add virtualbox secure apt key
-    apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    apt_key:
+      url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
     become: yes
 
   - name: Add virtualbox repository to apt sources
-    apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian xenial contrib" filename="virtualbox"
+    apt_repository:
+      repo: "deb http://download.virtualbox.org/virtualbox/debian xenial contrib"
+      filename: "virtualbox"
     become: yes
 
   - name: Install DKMS to ensure virtualization kernel is mantained
-    apt: name=dkms state=present
+    apt:
+      name: dkms
+      state: present
     become: yes
 
   - name: Install virtualbox
-    apt: name=virtualbox-5.0 state=latest
+    apt:
+      name: virtualbox-5.0
+      state: latest
     become: yes
 
   - name: Copy the helper scripts to the local bin
-    copy: src=files/ dest=~/.bash.d/bin mode=u+rwx
+    copy:
+      src: files/
+      dest: ~/.bash.d/bin mode=u+rwx
 

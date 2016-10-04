@@ -1,23 +1,53 @@
 ---
 - name: Install vim
-  apt: name=vim-gtk state=latest
+  apt:
+    name: vim-gtk
+    state: latest
   become: yes
 
 - name: Install software dependencies for what we use with vim
-  apt: name={{item}} state=latest
+  apt:
+    name:
+      - silversearcher-ag
+      - build-essential
+      - cmake
+      - python-dev
+    state: latest
+  become: yes
+
+- name: Install nodejs dependencies for what we use within vim
+  npm:
+    name: "{{item}}"
+    global: yes
   become: yes
   with_items:
-    - silversearcher-ag
-    - build-essential
-    - cmake
-    - python-dev
+    - eslint
+    - js-yaml
+    - jsonlint
+    - tern
 
 - name: Create .vim directory
-  file: path=~/.vim state=directory
+  file:
+    path: ~/.vim
+    state: directory
+
+- name: Create autoload directory
+  file:
+    path: ~/.vim/autoload/
+    state: directory
 
 - name: Setup .vimrc
-  copy: src=files/vimrc dest=~/.vimrc
+  copy:
+    src: files/vimrc
+    dest: ~/.vimrc
 
 - name: Setup vim plug
-  get_url: url=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim dest=~/.vim/autoload/plug.vim
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.vim/autoload/plug.vim
+
+- name: Copy snippets
+  copy:
+    src: files/ultisnips/
+    dest: ~/.vim/
 

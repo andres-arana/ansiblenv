@@ -1,17 +1,16 @@
 ---
 - name: Install other utilities
-  apt: name={{item}} state=latest
+  apt:
+    name:
+      - gparted
+      - calibre
+      - filezilla
+      - zathura
+    state: latest
   become: yes
-  with_items:
-    # Partition editor
-    - gparted
-    # Virtual library
-    - calibre
-    # FTP browsing
-    - filezilla
-    # PDF viewer
-    - zathura
 
 - name: Install movew2d
-  copy: src=files/mvw2d dest=~/.bash.d/bin/mvw2d
+  copy:
+    src: files/mvw2d
+    dest: ~/.bash.d/bin/mvw2d
 

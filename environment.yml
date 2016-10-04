@@ -5,6 +5,7 @@
     - bash
     - docker
     - git
+    - nodejs
     - software
     - terminal
     - tmux
