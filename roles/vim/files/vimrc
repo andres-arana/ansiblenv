@@ -1,78 +1,124 @@
 " *****************************************************************************
-" VIM PLUGIN BUNDLES
+" PLUGINS
 " *****************************************************************************
 call plug#begin('~/.vim/plugged')
+let g:plug_timeout=900
 
-" *****************************************************************************
-" General utilities
-" *****************************************************************************
+" -----------------------------------------------------------------------------
+" GENERAL UTILITIES
+" -----------------------------------------------------------------------------
 " Fast asynchronous invocations
 Plug 'Shougo/vimproc', {'do': 'make'}
-" Project explorer
-Plug 'scrooloose/nerdtree'
-" Undo tree
-Plug 'sjl/gundo.vim'
 " Repeat complex commands with .
 Plug 'tpope/vim-repeat'
-" Syntax checking on save
-Plug 'scrooloose/syntastic'
-" Paired mappings
-Plug 'tpope/vim-unimpaired'
-" Indent guides
-Plug 'nathanaelkane/vim-indent-guides'
-" Rainbow parentheses
-Plug 'luochen1990/rainbow'
-" *****************************************************************************
-" UI
-" *****************************************************************************
-" Colorscheme
-Plug 'altercation/vim-colors-solarized'
-" Powerfull status line
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Easy automatic window resizing
-Plug 'roman/golden-ratio'
-" *****************************************************************************
-" Tmux
-" *****************************************************************************
-" Easy tmux navigation
-Plug 'christoomey/vim-tmux-navigator'
-" *****************************************************************************
-" Unite
-" *****************************************************************************
-" Unite itself
-Plug 'Shougo/unite.vim'
-" Source for commandline and yank history
-Plug 'thinca/vim-unite-history'
-" Source for file outline
-Plug 'Shougo/unite-outline'
-" *****************************************************************************
-" Text editing
-" *****************************************************************************
-" Comment and uncomment code
-Plug 'tpope/vim-commentary'
-" Smart scope delimiters
-Plug 'tpope/vim-endwise'
-" Surround expressions
-Plug 'tpope/vim-surround'
-" Tabular data edition
-Plug 'godlygeek/tabular'
-" Completions
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer'}
-" Snippets
-Plug 'SirVer/ultisnips'
-" *****************************************************************************
-" Navigation
-" *****************************************************************************
+" -----------------------------------------------------------------------------
+" NAVIGATION
+" -----------------------------------------------------------------------------
+" Project explorer
+Plug 'scrooloose/nerdtree'
+let NERDTreeMinimalUI=1
+let NERDTreeMapJumpNextSibling=''
+let NERDTreeMapJumpPrevSibling=''
+let NERDTreeAutoDeleteBuffer=0
+let NERDTreeCascadeOpenSingleChildDir=0
+let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
 " Improved % navigation matching
 Plug 'vim-scripts/matchit.zip'
 " Match HTML tags in % navigation
 Plug 'gregsexton/MatchTag'
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
-" *****************************************************************************
-" Views and templates
-" *****************************************************************************
+" -----------------------------------------------------------------------------
+" EXTERNAL MAPPINGS
+" -----------------------------------------------------------------------------
+" Paired mappings
+Plug 'tpope/vim-unimpaired'
+" -----------------------------------------------------------------------------
+" UI
+" -----------------------------------------------------------------------------
+" Colorscheme
+Plug 'altercation/vim-colors-solarized'
+let g:solarized_termtrans = 1
+" Powerfull status line
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+" Automatic window resizing
+Plug 'roman/golden-ratio'
+" Indent guides
+Plug 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
+" Rainbow parentheses
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+      \   'ctermfgs': ['darkred', 'darkgreen', 'darkyellow', 'darkblue', 'darkcyan', 'darkmagenta'],
+      \}
+" -----------------------------------------------------------------------------
+" TMUX
+" -----------------------------------------------------------------------------
+" Easy tmux navigation
+Plug 'christoomey/vim-tmux-navigator'
+" -----------------------------------------------------------------------------
+" UNITE
+" -----------------------------------------------------------------------------
+" Unite itself
+Plug 'Shougo/unite.vim'
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '-i --vimgrep --hidden'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_rec_async_command = ['ag', '--nocolor', '--nogroup', '--ignore', '".git"', '--hidden', '-g', '']
+nnoremap <leader>uf :Unite -start-insert -verbose file_rec/async:!<cr>
+nnoremap <leader>uj :Unite -start-insert jump<cr>
+nnoremap <leader>ub :Unite -start-insert buffer<cr>
+nnoremap <leader>ug :Unite -start-insert grep:.<cr>
+nnoremap <leader>ut :Unite -start-insert tab<cr>
+" Source for file outline
+Plug 'Shougo/unite-outline'
+nnoremap <leader>uo :Unite -start-insert outline<cr>
+" -----------------------------------------------------------------------------
+" TEXT EDITING
+" -----------------------------------------------------------------------------
+" Comment and uncomment code
+Plug 'tpope/vim-commentary'
+" Smart scope delimiters
+Plug 'tpope/vim-endwise'
+" Surround expressions
+Plug 'tpope/vim-surround'
+" Aligning
+Plug 'junegunn/vim-easy-align'
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+" Register previewing
+Plug 'junegunn/vim-peekaboo'
+let g:peekaboo_delay = 750
+" -----------------------------------------------------------------------------
+" GENERAL DEVELOPMENT
+" -----------------------------------------------------------------------------
+" Syntax checking on save
+Plug 'scrooloose/syntastic'
+let g:syntastic_javascript_checkers = ["eslint"]
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+" Completions
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer'}
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
+let g:ycm_use_ultisnips_complete = 1
+" Snippets
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+let g:UltiSnipsSnippetDirectories=['ultisnips']
+let g:UltiSnipsEditSplit = 'context'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+nnoremap <leader>s :UltiSnipsEdit<cr>
+" Fugitive
+Plug 'tpope/vim-fugitive'
+" -----------------------------------------------------------------------------
+" VIEWS AND TEMPLATES
+" -----------------------------------------------------------------------------
 " Advanced css syntax
 Plug 'JulesWang/css.vim'
 " LESS syntax
@@ -85,94 +131,47 @@ Plug 'othree/html5.vim'
 Plug 'mattn/emmet-vim'
 " SLIM templates
 Plug 'slim-template/vim-slim'
-" *****************************************************************************
-" Javascript development
-" *****************************************************************************
+" -----------------------------------------------------------------------------
+" JAVASCRIPT
+" -----------------------------------------------------------------------------
 " Additional javascript syntax
 Plug 'pangloss/vim-javascript'
 " JSX syntax
 Plug 'mxw/vim-jsx'
 " JSON syntax
 Plug 'leshill/vim-json'
-" *****************************************************************************
-" Ruby development
-" *****************************************************************************
+" -----------------------------------------------------------------------------
+" RUBY
+" -----------------------------------------------------------------------------
 " Ruby syntax highlighting and other goodies
 Plug 'vim-ruby/vim-ruby'
 " Rails integration
 Plug 'tpope/vim-rails'
-" *****************************************************************************
-" Nearley syntax files
-" *****************************************************************************
+" -----------------------------------------------------------------------------
+" NEARLEY
+" -----------------------------------------------------------------------------
 Plug 'andres-arana/vim-nearley'
-" *****************************************************************************
-" SCM integrations
-" *****************************************************************************
-" Fugitive
-Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
 " *****************************************************************************
-" PLUGIN SETTINGS
+" INTERNAL MAPPINGS
 " *****************************************************************************
-let g:plug_timeout=900
-let g:indent_guides_enable_on_vim_startup = 1
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-let g:ycm_use_ultisnips_complete = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let NERDTreeMinimalUI=1
-let NERDTreeMapJumpNextSibling=''
-let NERDTreeMapJumpPrevSibling=''
-let NERDTreeAutoDeleteBuffer=0
-let NERDTreeCascadeOpenSingleChildDir=0
-let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
-let g:syntastic_javascript_checkers = ["eslint"]
-let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
-let g:UltiSnipsSnippetDirectories=['ultisnips']
-let g:UltiSnipsEditSplit = 'context'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '-i --vimgrep --hidden'
-let g:unite_source_grep_recursive_opt = ''
-let g:unite_source_rec_async_command = ['ag', '--nocolor', '--nogroup', '--ignore', '".git"', '--hidden', '-g', '']
-let g:solarized_termtrans = 1
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-      \   'ctermfgs': ['darkred', 'darkgreen', 'darkyellow', 'darkblue', 'darkcyan', 'darkmagenta'],
-      \}
-
-" *****************************************************************************
-" LEADER MAPPINGS
-" *****************************************************************************
-" Directory navigation
-nnoremap <leader>de :e .<cr>
-nnoremap <leader>ds :sp .<cr>
-nnoremap <leader>dv :vsp .<cr>
-nnoremap <leader>dt :tabedit .<cr>
-" Unite
-nnoremap <leader>uf :Unite -start-insert -verbose file_rec/async:!<cr>
-nnoremap <leader>uj :Unite -start-insert jump<cr>
-nnoremap <leader>ub :Unite -start-insert buffer<cr>
-nnoremap <leader>ug :Unite -start-insert grep:.<cr>
-nnoremap <leader>ut :Unite -start-insert tab<cr>
-nnoremap <leader>uc :Unite -start-insert history/command<cr>
-nnoremap <leader>us :Unite -start-insert history/search<cr>
-nnoremap <leader>ur :Unite register<cr>
-nnoremap <leader>uo :Unite -start-insert outline<cr>
-" Ultisnips
-nnoremap <leader>s :UltiSnipsEdit<cr>
+" Use space as a leader alias
+map <space> <leader>
+" Remove annoying mappings
+nnoremap <F1> <nop>
+nnoremap K <nop>
+" Fast macros
+nnoremap Q @q
+" Make Y consistent
+nnoremap Y y$
 " Formatting
 nmap <leader>ff gg=G``<cr>
-nmap <leader>f$ :%s/\s*$//g<cr>
+nmap <leader>f$ :%s/\s*$//g``<cr>
 
 " *****************************************************************************
-" STANDARD VIM SETTINGS
+" VIM SETTINGS
 " *****************************************************************************
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -229,25 +228,12 @@ set laststatus=2
 " Enable the cursorline
 set cursorline
 set cursorcolumn
-" *****************************************************************************
-" STANDARD VIM MAPPINGS
-" *****************************************************************************
-" Use space as a leader alias
-map <space> <leader>
-" Fast esc
-inoremap <C-c> <esc>
-" Remove annoying mappings
-nnoremap <F1> <nop>
-nnoremap K <nop>
-" Fast macros
-nnoremap Q @q
-" Make Y consistent
-nnoremap Y y$
-" *****************************************************************************
-" COLORSCHEME
-" *****************************************************************************
+" Enable case-ignoring search everywhere
+set ignorecase
+" UI settings and colorscheme
 set go=
 set gfn=Inconsolata\ 10
 set t_Co=16
 set background=dark
 colorscheme solarized
+
