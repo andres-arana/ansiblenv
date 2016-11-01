@@ -37,8 +37,6 @@ Plug 'roman/golden-ratio'
 " *****************************************************************************
 " Easy tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
-" Vim dispatcher
-Plug 'benmills/vimux'
 " *****************************************************************************
 " Unite
 " *****************************************************************************
@@ -94,8 +92,6 @@ Plug 'slim-template/vim-slim'
 Plug 'pangloss/vim-javascript'
 " JSX syntax
 Plug 'mxw/vim-jsx'
-" Coffeescript syntax
-Plug 'kchmck/vim-coffee-script'
 " JSON syntax
 Plug 'leshill/vim-json'
 " *****************************************************************************
@@ -105,6 +101,10 @@ Plug 'leshill/vim-json'
 Plug 'vim-ruby/vim-ruby'
 " Rails integration
 Plug 'tpope/vim-rails'
+" *****************************************************************************
+" Nearley syntax files
+" *****************************************************************************
+Plug 'andres-arana/vim-nearley'
 " *****************************************************************************
 " SCM integrations
 " *****************************************************************************
@@ -129,9 +129,6 @@ let NERDTreeMapJumpPrevSibling=''
 let NERDTreeAutoDeleteBuffer=0
 let NERDTreeCascadeOpenSingleChildDir=0
 let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
@@ -158,9 +155,6 @@ nnoremap <leader>de :e .<cr>
 nnoremap <leader>ds :sp .<cr>
 nnoremap <leader>dv :vsp .<cr>
 nnoremap <leader>dt :tabedit .<cr>
-" Quick config file edition
-nnoremap <leader>cr :so $MYVIMRC<cr>
-nnoremap <leader>ce :tabedit $MYVIMRC<cr>
 " Unite
 nnoremap <leader>uf :Unite -start-insert -verbose file_rec/async:!<cr>
 nnoremap <leader>uj :Unite -start-insert jump<cr>
@@ -171,17 +165,10 @@ nnoremap <leader>uc :Unite -start-insert history/command<cr>
 nnoremap <leader>us :Unite -start-insert history/search<cr>
 nnoremap <leader>ur :Unite register<cr>
 nnoremap <leader>uo :Unite -start-insert outline<cr>
-" Vimux
-nnoremap <leader>vp :VimuxPromptCommand<cr>
-nnoremap <leader>vx :VimuxInterruptRunner<cr>
-nnoremap <leader>vc :VimuxCloseRunner<cr>
-nnoremap <leader>vz :VimuxZoomRunner<cr>
-nnoremap <leader>vi :VimuxInspectRunner<cr>
-nnoremap <leader>vl :VimuxRunLastCommand<cr>
 " Ultisnips
 nnoremap <leader>s :UltiSnipsEdit<cr>
 " Formatting
-nmap <leader>ff gg=G<cr>
+nmap <leader>ff gg=G``<cr>
 nmap <leader>f$ :%s/\s*$//g<cr>
 
 " *****************************************************************************
@@ -264,4 +251,3 @@ set gfn=Inconsolata\ 10
 set t_Co=16
 set background=dark
 colorscheme solarized
-highligh clear SignColumn
