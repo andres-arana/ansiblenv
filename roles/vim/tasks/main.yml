@@ -11,7 +11,9 @@
       - silversearcher-ag
       - build-essential
       - cmake
+      - python
       - python-dev
+      - exuberant-ctags
     state: latest
   become: yes
 

@@ -4,11 +4,11 @@
     - autojump
     - bash
     - docker
+    - fzf
     - git
     - nodejs
     - software
-    - terminal
     - tmux
-    - utilities
     - vagrant
     - vim
+    - xfce4

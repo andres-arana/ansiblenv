@@ -11,6 +11,10 @@ let g:plug_timeout=900
 Plug 'Shougo/vimproc', {'do': 'make'}
 " Repeat complex commands with .
 Plug 'tpope/vim-repeat'
+" Fuzzy selection interface for everything
+Plug 'junegunn/fzf'
+nnoremap <leader>zf :FZF<cr>
+
 " -----------------------------------------------------------------------------
 " NAVIGATION
 " -----------------------------------------------------------------------------
@@ -28,6 +32,10 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'gregsexton/MatchTag'
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
+" Quick file tag navigation
+Plug 'majutsushi/tagbar'
+nnoremap <leader>tt :TagbarToggle<cr>
+nnoremap <leader>tj :TagbarOpenAutoClose<cr>
 " -----------------------------------------------------------------------------
 " EXTERNAL MAPPINGS
 " -----------------------------------------------------------------------------
@@ -60,23 +68,6 @@ let g:rainbow_conf = {
 " -----------------------------------------------------------------------------
 " Easy tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
-" -----------------------------------------------------------------------------
-" UNITE
-" -----------------------------------------------------------------------------
-" Unite itself
-Plug 'Shougo/unite.vim'
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '-i --vimgrep --hidden'
-let g:unite_source_grep_recursive_opt = ''
-let g:unite_source_rec_async_command = ['ag', '--nocolor', '--nogroup', '--ignore', '".git"', '--hidden', '-g', '']
-nnoremap <leader>uf :Unite -start-insert -verbose file_rec/async:!<cr>
-nnoremap <leader>uj :Unite -start-insert jump<cr>
-nnoremap <leader>ub :Unite -start-insert buffer<cr>
-nnoremap <leader>ug :Unite -start-insert grep:.<cr>
-nnoremap <leader>ut :Unite -start-insert tab<cr>
-" Source for file outline
-Plug 'Shougo/unite-outline'
-nnoremap <leader>uo :Unite -start-insert outline<cr>
 " -----------------------------------------------------------------------------
 " TEXT EDITING
 " -----------------------------------------------------------------------------
@@ -167,8 +158,8 @@ nnoremap Q @q
 " Make Y consistent
 nnoremap Y y$
 " Formatting
-nmap <leader>ff gg=G``<cr>
-nmap <leader>f$ :%s/\s*$//g``<cr>
+nmap <leader>ff gg=G``
+nmap <leader>f$ :%s/\s*$//g<cr>``
 
 " *****************************************************************************
 " VIM SETTINGS

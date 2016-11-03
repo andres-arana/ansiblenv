@@ -3,3 +3,4 @@
   copy:
     src: files/terminalrc
     dest: ~/.config/xfce4/terminal/terminalrc
+

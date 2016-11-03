@@ -17,6 +17,12 @@
     state: latest
   become: yes
 
+- name: Install zathura for document viewing
+  apt:
+    name: zathura
+    state: latest
+  become: yes
+
 - name: Install archive managers
   apt:
     name:

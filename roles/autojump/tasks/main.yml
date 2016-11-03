@@ -8,5 +8,6 @@
 - name: Install the autojump initializer
   copy:
     content: ". /usr/share/autojump/autojump.sh"
-    dest: ~/.bash.d/autojump.bash force=yes
+    dest: ~/.bash.d/autojump.bash
+    force: yes
 

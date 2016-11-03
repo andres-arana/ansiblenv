@@ -46,8 +46,3 @@
       state: latest
     become: yes
 
-  - name: Copy the helper scripts to the local bin
-    copy:
-      src: files/
-      dest: ~/.bash.d/bin mode=u+rwx
-
