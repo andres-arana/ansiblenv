@@ -5,6 +5,7 @@
     - bash
     - docker
     - fzf
+    - gcloud
     - git
     - nodejs
     - software

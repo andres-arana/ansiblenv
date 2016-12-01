@@ -1,0 +1,21 @@
+---
+
+- name: Import the google cloud sdk key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+  become: yes
+
+- name: Add google cloud sdk  deb repository
+  apt_repository:
+    repo: 'deb https://packages.cloud.google.com/apt cloud-sdk-yakkety  main'
+    state: present
+  become: yes
+
+- name: Install required packages
+  apt:
+    name:
+      - google-cloud-sdk
+      - kubectl
+    state: latest
+  become: yes
