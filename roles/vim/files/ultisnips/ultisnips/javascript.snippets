@@ -8,12 +8,36 @@ snippet import
 import $1 from '$2';$0
 endsnippet
 
-snippet returnobj
-return {
+snippet export
+export $0;
+endsnippet
+
+snippet exportd
+export default $0;
+endsnippet
+
+snippet exportf
+export function $1($2) {
 	$0
-};
+}
+endsnippet
+
+snippet exportdf
+export default function ($1) {
+	$0
+}
+endsnippet
+
+snippet exportc
+export default function Component($1) {
+	$0
+}
 endsnippet
 
 snippet require
 const $1 = require('$2');$0
+endsnippet
+
+snippet return
+return ${1:($2)};
 endsnippet

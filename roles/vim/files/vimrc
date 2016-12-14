@@ -78,17 +78,14 @@ Plug 'christoomey/vim-tmux-navigator'
 " -----------------------------------------------------------------------------
 " Comment and uncomment code
 Plug 'tpope/vim-commentary'
-" Smart scope delimiters
-Plug 'tpope/vim-endwise'
+" Smart delimiters
+Plug 'cohama/lexima.vim'
 " Surround expressions
 Plug 'tpope/vim-surround'
 " Aligning
 Plug 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
-" Register previewing
-Plug 'junegunn/vim-peekaboo'
-let g:peekaboo_delay = 750
 " -----------------------------------------------------------------------------
 " GENERAL DEVELOPMENT
 " -----------------------------------------------------------------------------
@@ -125,6 +122,11 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'othree/html5.vim'
 " Fast expansion for html tags
 Plug 'mattn/emmet-vim'
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
 " SLIM templates
 Plug 'slim-template/vim-slim'
 " -----------------------------------------------------------------------------
