@@ -4,40 +4,22 @@ ${1:($2)} => ${3:{
 }}
 endsnippet
 
-snippet import
+snippet imp
 import $1 from '$2';$0
 endsnippet
 
-snippet export
-export $0;
+snippet impp
+import '$1';$0
 endsnippet
 
-snippet exportd
+snippet exp
+export ${1:const $2 = $0};
+endsnippet
+
+snippet expd
 export default $0;
 endsnippet
 
-snippet exportf
-export function $1($2) {
-	$0
-}
-endsnippet
-
-snippet exportdf
-export default function ($1) {
-	$0
-}
-endsnippet
-
-snippet exportc
-export default function Component($1) {
-	$0
-}
-endsnippet
-
-snippet require
+snippet req
 const $1 = require('$2');$0
-endsnippet
-
-snippet return
-return ${1:($2)};
 endsnippet

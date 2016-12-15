@@ -27,6 +27,7 @@
     - js-yaml
     - jsonlint
     - tern
+    - tern-jsx
 
 - name: Create .vim directory
   file:
