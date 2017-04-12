@@ -3,4 +3,3 @@ tags
 .tmux
 .ycm_extra_conf.py
 .syntastic_*_config
-.tern-project

@@ -17,18 +17,6 @@
     state: latest
   become: yes
 
-- name: Install nodejs dependencies for what we use within vim
-  npm:
-    name: "{{item}}"
-    global: yes
-  become: yes
-  with_items:
-    - eslint
-    - js-yaml
-    - jsonlint
-    - tern
-    - tern-jsx
-
 - name: Create .vim directory
   file:
     path: ~/.vim

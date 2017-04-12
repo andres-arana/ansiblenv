@@ -6,7 +6,7 @@
 
   - name: Download the vagrant installer
     get_url:
-      url: https://releases.hashicorp.com/vagrant/1.9.0/vagrant_1.9.0_x86_64.deb
+      url: https://releases.hashicorp.com/vagrant/1.9.1/vagrant_1.9.1_x86_64.deb
       dest: /tmp/vagrant.deb
     when: vagrant_installed.rc != 0
 
