@@ -13,7 +13,6 @@
       - cmake
       - python
       - python-dev
-      - exuberant-ctags
     state: latest
   become: yes
 
@@ -42,3 +41,11 @@
     src: files/ultisnips/
     dest: ~/.vim/
 
+- name: Install node dependencies
+  npm:
+    global: yes
+    name: "{{ item }}"
+  become: yes
+  with_items:
+    - jsonlint
+    - js-yaml

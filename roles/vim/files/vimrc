@@ -29,10 +29,6 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'gregsexton/MatchTag'
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
-" Quick file tag navigation
-Plug 'majutsushi/tagbar'
-nnoremap <leader>tt :TagbarToggle<cr>
-nnoremap <leader>tj :TagbarOpenAutoClose<cr>
 " Fuzzy finder and file jumper
 Plug 'junegunn/fzf'
 nnoremap <leader>zF :FZF!<cr>
@@ -73,6 +69,14 @@ let g:rainbow_conf = {
 " -----------------------------------------------------------------------------
 " Easy tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
+" Tmux commands
+Plug 'benmills/vimux'
+nnoremap <leader>vl :VimuxRunLastCommand<cr>
+nnoremap <leader>vc :VimuxCloseRunner<cr>
+nnoremap <leader>vi :VimuxInspectRuner<cr>
+nnoremap <leader>vx :VimuxInterruptRunner<cr>
+nnoremap <leader>vz :VimuxZoomRunner<cr>
+nnoremap <leader>vp :VimuxPromptCommand<cr>
 " -----------------------------------------------------------------------------
 " TEXT EDITING
 " -----------------------------------------------------------------------------
@@ -106,8 +110,6 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 nnoremap <leader>s :UltiSnipsEdit<cr>
-" Fugitive
-Plug 'tpope/vim-fugitive'
 " -----------------------------------------------------------------------------
 " VIEWS AND TEMPLATES
 " -----------------------------------------------------------------------------
@@ -148,17 +150,6 @@ Plug 'tpope/vim-rails'
 " NEARLEY
 " -----------------------------------------------------------------------------
 Plug 'andres-arana/vim-nearley'
-" -----------------------------------------------------------------------------
-" LATEX
-" -----------------------------------------------------------------------------
-Plug 'lervag/vimtex'
-" -----------------------------------------------------------------------------
-" CLOJURE
-" -----------------------------------------------------------------------------
-Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'tpope/vim-fireplace'
 
 call plug#end()
 
