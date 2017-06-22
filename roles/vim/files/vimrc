@@ -3,15 +3,18 @@
 " *****************************************************************************
 call plug#begin('~/.vim/plugged')
 let g:plug_timeout=900
+nnoremap <leader>pi :PlugInstall<cr>
+nnoremap <leader>pu :PlugUpdate<cr>
+nnoremap <leader>pg :PlugUpgrade<cr>
+nnoremap <leader>pc :PlugClean<cr>
 
 " -----------------------------------------------------------------------------
 " GENERAL UTILITIES
 " -----------------------------------------------------------------------------
-" Fast asynchronous invocations
-Plug 'Shougo/vimproc', {'do': 'make'}
+" Paired mappings
+Plug 'tpope/vim-unimpaired'
 " Repeat complex commands with .
 Plug 'tpope/vim-repeat'
-
 " -----------------------------------------------------------------------------
 " NAVIGATION
 " -----------------------------------------------------------------------------
@@ -31,19 +34,20 @@ Plug 'gregsexton/MatchTag'
 Plug 'kshenoy/vim-signature'
 " Fuzzy finder and file jumper
 Plug 'junegunn/fzf'
-nnoremap <leader>zF :FZF!<cr>
-nnoremap <leader>zf :call fzf#run(fzf#wrap('files', {'source': 'git ls-files'}, 1))<cr>
+Plug 'junegunn/fzf.vim'
+let g:fzf_command_prefix = 'Fzf'
+nnoremap <leader>zf :FzfFiles<cr>
+nnoremap <leader>zg :FzfGFiles<cr>
+nnoremap <leader>zs :FzfSnippets<cr>
+nnoremap <leader>zc :FzfCommands<cr>
+nnoremap <leader>zm :FzfMaps<cr>
 " Code searching
 Plug 'mileszs/ack.vim'
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-" -----------------------------------------------------------------------------
-" EXTERNAL MAPPINGS
-" -----------------------------------------------------------------------------
-" Paired mappings
-Plug 'tpope/vim-unimpaired'
+" Argument shuffling
+Plug 'PeterRincker/vim-argumentative'
 " -----------------------------------------------------------------------------
 " UI
 " -----------------------------------------------------------------------------
@@ -55,9 +59,6 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-" Indent guides
-Plug 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
 " Rainbow parentheses
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
@@ -77,6 +78,7 @@ nnoremap <leader>vi :VimuxInspectRuner<cr>
 nnoremap <leader>vx :VimuxInterruptRunner<cr>
 nnoremap <leader>vz :VimuxZoomRunner<cr>
 nnoremap <leader>vp :VimuxPromptCommand<cr>
+nnoremap <leader>vd :VimuxPromptCommand<cr>docker-compose run dev 
 " -----------------------------------------------------------------------------
 " TEXT EDITING
 " -----------------------------------------------------------------------------
@@ -91,16 +93,19 @@ Plug 'junegunn/vim-easy-align'
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 " -----------------------------------------------------------------------------
-" GENERAL DEVELOPMENT
+" DEVELOPMENT
 " -----------------------------------------------------------------------------
 " Syntax checking on save
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
+" Code formatting
+Plug 'sbdchd/neoformat'
 " Completions
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']
 let g:ycm_use_ultisnips_complete = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+set omnifunc=syntaxcomplete#Complete
 " Snippets
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
@@ -110,17 +115,9 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 nnoremap <leader>s :UltiSnipsEdit<cr>
-" -----------------------------------------------------------------------------
-" VIEWS AND TEMPLATES
-" -----------------------------------------------------------------------------
-" Advanced css syntax
-Plug 'JulesWang/css.vim'
-" LESS syntax
-Plug 'genoma/vim-less'
-" SCSS syntax
-Plug 'cakebaker/scss-syntax.vim'
-" HTML5 syntax
-Plug 'othree/html5.vim'
+" Syntax pack
+Plug 'sheerun/vim-polyglot'
+let g:vim_markdown_conceal = 0
 " Fast expansion for html tags
 Plug 'mattn/emmet-vim'
 let g:user_emmet_settings = {
@@ -128,29 +125,10 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
-" SLIM templates
-Plug 'slim-template/vim-slim'
 " -----------------------------------------------------------------------------
-" JAVASCRIPT
-" -----------------------------------------------------------------------------
-" Additional javascript syntax
-Plug 'pangloss/vim-javascript'
-" JSX syntax
-Plug 'mxw/vim-jsx'
-" JSON syntax
-Plug 'leshill/vim-json'
-" -----------------------------------------------------------------------------
-" RUBY
-" -----------------------------------------------------------------------------
-" Ruby syntax highlighting and other goodies
-Plug 'vim-ruby/vim-ruby'
-" Rails integration
-Plug 'tpope/vim-rails'
-" -----------------------------------------------------------------------------
-" NEARLEY
+" OWN PLUGINS
 " -----------------------------------------------------------------------------
 Plug 'andres-arana/vim-nearley'
-
 call plug#end()
 
 " *****************************************************************************
@@ -168,6 +146,9 @@ nnoremap Y y$
 " Formatting
 nmap <leader>ff gg=G``
 nmap <leader>f$ :%s/\s*$//g<cr>``
+" Quickly edit vim settings
+nnoremap <leader>ce :e $MYVIMRC<cr>
+nnoremap <leader>cr :so $MYVIMRC<cr>
 
 " *****************************************************************************
 " VIM SETTINGS
@@ -229,6 +210,8 @@ set cursorline
 set cursorcolumn
 " Enable case-ignoring search everywhere
 set ignorecase
+" Enable source concealment
+set conceallevel=2
 " UI settings and colorscheme
 set go=
 set gfn=Inconsolata\ 10
