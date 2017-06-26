@@ -1,3 +1,3 @@
 #! /bin/bash
 sudo apt-get install ansible -y
-ansible-playbook environment.yml
+ansible-playbook environment.yml $*

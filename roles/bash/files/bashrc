@@ -21,6 +21,10 @@ shopt -s globstar
 
 # Ensure vi is the default editor
 export EDITOR=vi
+export VISUAL=vi
+
+# Set vi readline mode
+set -o vi
 
 # Disable C-s hanging the terminal up
 stty -ixon
