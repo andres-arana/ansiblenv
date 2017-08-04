@@ -19,3 +19,9 @@
       - kubectl
     state: latest
   become: yes
+
+- name: Install the kubectl bash completion
+  copy:
+    content: "source <(kubectl completion bash)"
+    dest: ~/.bash.d/kubectl.bash
+    force: yes

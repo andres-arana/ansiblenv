@@ -1,42 +1,56 @@
-snippet imp
+snippet import
 import $1 from '$2';$0
 endsnippet
 
-snippet impp
-import '$1';$0
-endsnippet
-
-snippet exp
+snippet export
 export ${1:const $2 = $0};
 endsnippet
 
-snippet expd
+snippet exportd
 export default $0;
 endsnippet
 
-snippet req
+snippet require
 const $1 = require('$2');$0
 endsnippet
 
+snippet exportm
+module.exports = $0;
+endsnippet
+
 snippet fn
-($1) => {
+($1) => ${2:{
 	$0
-}
+}}
+endsnippet
+
+snippet afn
+async ($1) => ${2:{
+	$0
+}}
 endsnippet
 
 snippet const
 const $1 = $0;
 endsnippet
 
-snippet ret
+snippet return
 return $0;
+endsnippet
+
+snippet promise
+new Promise((resolve, reject) => {
+	$0
+})
 endsnippet
 
 snippet action
 export const $1 = (payload) => {
-	return {
+	${2:return {
 		type: '$3',
 		payload,
-	};
+	};}
 };
 endsnippet
+
+
