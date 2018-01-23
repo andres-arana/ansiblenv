@@ -1,21 +1,21 @@
-snippet import
+snippet imp
 import $1 from '$2';$0
 endsnippet
 
-snippet export
+snippet exp
 export ${1:const $2 = $0};
 endsnippet
 
-snippet exportd
-export default $0;
+snippet req
+const $1 = require('${2:$1}');$0
 endsnippet
 
-snippet require
-const $1 = require('$2');$0
-endsnippet
-
-snippet exportm
+snippet mod
 module.exports = $0;
+endsnippet
+
+snippet fnc
+$1(${VISUAL})
 endsnippet
 
 snippet fn
@@ -34,8 +34,34 @@ snippet const
 const $1 = $0;
 endsnippet
 
-snippet return
-return $0;
+snippet ret
+return ${0:${VISUAL}};
+endsnippet
+
+snippet case
+case $1: {
+	$0
+}
+endsnippet
+
+snippet if
+if ($1) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet ife
+if ($$1) {
+	$2
+} else {
+	$0
+}
+endsnippet
+
+snippet swi
+switch ($1) {
+	$0
+}
 endsnippet
 
 snippet promise
@@ -50,6 +76,16 @@ export const $1 = (payload) => {
 		type: '$3',
 		payload,
 	};}
+};
+endsnippet
+
+snippet reducer
+export const $1 = (state = $2, action) => {
+	switch (action.type) {
+		$0
+		default:
+			return state;
+	}
 };
 endsnippet
 

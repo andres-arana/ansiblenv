@@ -121,14 +121,14 @@ let g:vim_markdown_conceal = 0
 " Fast expansion for html tags
 Plug 'mattn/emmet-vim'
 let g:user_emmet_settings = {
-\  'javascript.jsx' : {
-\      'extends' : 'jsx',
-\  },
-\}
+      \  'javascript.jsx' : {
+      \      'extends' : 'jsx',
+      \  },
+      \}
 " -----------------------------------------------------------------------------
-" OWN PLUGINS
+" OTHER SYNTAX PLUGINS
 " -----------------------------------------------------------------------------
-Plug 'andres-arana/vim-nearley'
+Plug 'tjvr/vim-nearley'
 call plug#end()
 
 " *****************************************************************************
@@ -216,6 +216,6 @@ set conceallevel=2
 set go=
 set gfn=Inconsolata\ 10
 set t_Co=16
-set background=dark
+set background=light
 colorscheme solarized
 
