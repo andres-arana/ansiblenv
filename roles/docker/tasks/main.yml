@@ -8,14 +8,14 @@
 
 - name: Ensure docker compose is installed
   get_url:
-    url: https://github.com/docker/compose/releases/download/1.9.0/docker-compose-Linux-x86_64
+    url: https://github.com/docker/compose/releases/download/1.19.0/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: "u=rwx,g=rx,o=rx"
   become: yes
 
 - name: Ensure docker compose completion is installed
   get_url:
-    url: https://raw.githubusercontent.com/docker/compose/1.9.0/contrib/completion/bash/docker-compose
+    url: https://raw.githubusercontent.com/docker/compose/1.19.0/contrib/completion/bash/docker-compose
     dest: /etc/bash_completion.d/docker-compose
     mode: "u=rw,g=r,o=r"
   become: yes

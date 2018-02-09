@@ -10,12 +10,6 @@
     dest: ~/.bash.d/bin/
     state: directory
 
-- name: Copy standard utilities
-  copy:
-    src: files/bin/
-    dest: ~/.bash.d/bin/
-    mode: u+rwx
-
 - name: Setup .bashrc
   copy:
     src: files/bashrc

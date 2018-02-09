@@ -3,7 +3,6 @@
   apt:
     name: 
       - tig
-      - gitk
       - git
     state: latest
   become: yes

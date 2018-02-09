@@ -1,33 +1,26 @@
 # Install Node.js using packages crafted by NodeSource
 ---
-- name: Ensure the system can use the HTTPS transport for APT
-  stat:
-    path: /usr/lib/apt/methods/https
-  register: apt_https_transport
-
 - name: Install HTTPS transport for APT
   apt:
     name: apt-transport-https
     state: latest
   become: yes
-  when: not apt_https_transport.stat.exists
 
 - name: Import the NodeSource GPG key into apt
   apt_key:
-    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
-    id: "68576280"
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
   become: yes
 
 - name: Add NodeSource deb repository
   apt_repository:
-    repo: 'deb https://deb.nodesource.com/node_6.x {{ ansible_distribution_release }} main'
+    repo: 'deb https://deb.nodesource.com/node_9.x {{ ansible_distribution_release }} main'
     state: present
   become: yes
 
 - name: Add NodeSource deb-src repository
   apt_repository:
-    repo: 'deb-src https://deb.nodesource.com/node_6.x {{ ansible_distribution_release }} main'
+    repo: 'deb-src https://deb.nodesource.com/node_9.x {{ ansible_distribution_release }} main'
     state: present
   become: yes
 
