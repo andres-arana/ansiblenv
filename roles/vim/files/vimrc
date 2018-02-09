@@ -216,6 +216,6 @@ set conceallevel=2
 set go=
 set gfn=Inconsolata\ 10
 set t_Co=16
-set background=light
+set background=dark
 colorscheme solarized
 

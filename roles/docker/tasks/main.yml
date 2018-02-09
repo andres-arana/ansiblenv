@@ -1,8 +1,19 @@
 ---
+- name: Import the docker apt key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  become: yes
+
+- name: Add the docker repository
+  apt_repository:
+    repo: 'deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
+    state: present
+  become: yes
 
 - name: Ensure docker is installed
   apt:
-    name: docker.io
+    name: docker-ce
     state: latest
   become: yes
 

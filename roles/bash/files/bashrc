@@ -23,9 +23,6 @@ shopt -s globstar
 export EDITOR=vi
 export VISUAL=vi
 
-# Disable C-s hanging the terminal up
-stty -ixon
-
 ################################################################################
 # History options
 ################################################################################
