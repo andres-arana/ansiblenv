@@ -49,3 +49,8 @@
   with_items:
     - jsonlint
     - js-yaml
+    - prettier
+    - eslint
+    - eslint-plugin-react
+    - eslint-plugin-prettier
+    - eslint-config-prettier

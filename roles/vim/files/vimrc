@@ -97,8 +97,12 @@ xmap ga <Plug>(EasyAlign)
 " -----------------------------------------------------------------------------
 " Syntax checking on save
 Plug 'w0rp/ale'
-" Code formatting
-Plug 'sbdchd/neoformat'
+nnoremap <leader>ff :ALEFix<cr>
+let g:ale_fixers = {
+      \ 'javascript': [
+      \     'eslint'
+      \ ]
+      \}
 " Completions
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 let g:ycm_key_list_select_completion = ['<C-n>']
@@ -143,9 +147,6 @@ nnoremap K <nop>
 nnoremap Q @q
 " Make Y consistent
 nnoremap Y y$
-" Formatting
-nmap <leader>ff gg=G``
-nmap <leader>f$ :%s/\s*$//g<cr>``
 " Quickly edit vim settings
 nnoremap <leader>ce :e $MYVIMRC<cr>
 nnoremap <leader>cr :so $MYVIMRC<cr>
@@ -212,6 +213,9 @@ set cursorcolumn
 set ignorecase
 " Enable source concealment
 set conceallevel=2
+" Disable the bell sounds
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 " UI settings and colorscheme
 set go=
 set gfn=Inconsolata\ 10
