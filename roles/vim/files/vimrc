@@ -78,7 +78,6 @@ nnoremap <leader>vi :VimuxInspectRuner<cr>
 nnoremap <leader>vx :VimuxInterruptRunner<cr>
 nnoremap <leader>vz :VimuxZoomRunner<cr>
 nnoremap <leader>vp :VimuxPromptCommand<cr>
-nnoremap <leader>vd :VimuxPromptCommand<cr>docker-compose run dev 
 " -----------------------------------------------------------------------------
 " TEXT EDITING
 " -----------------------------------------------------------------------------
@@ -101,6 +100,9 @@ nnoremap <leader>ff :ALEFix<cr>
 let g:ale_fixers = {
       \ 'javascript': [
       \     'eslint'
+      \ ],
+      \ 'json': [
+      \     'jq'
       \ ]
       \}
 " Completions
@@ -148,7 +150,7 @@ nnoremap Q @q
 " Make Y consistent
 nnoremap Y y$
 " Quickly edit vim settings
-nnoremap <leader>ce :e $MYVIMRC<cr>
+nnoremap <leader>ce :tabedit $MYVIMRC<cr>
 nnoremap <leader>cr :so $MYVIMRC<cr>
 
 " *****************************************************************************
