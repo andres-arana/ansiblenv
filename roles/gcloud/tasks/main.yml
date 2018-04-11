@@ -25,3 +25,9 @@
     content: "source <(kubectl completion bash)"
     dest: ~/.bash.d/kubectl.bash
     force: yes
+
+- name: Setup kubectl token copy utility
+  copy:
+    src: files/kubectlauth
+    dest: ~/.bash.d/bin/kubectlauth
+    mode: u+rwx

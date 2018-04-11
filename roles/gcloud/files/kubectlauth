@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+CURRENT_CONTEXT=$(kubectl config view -o json --minify | jq  -r '.["current-context"]')
+
+kubectl config view -o json --minify | jq -r '.users[0].user["auth-provider"].config["access-token"]' | xclip -sel clipboard
+
+echo "Token for $CURRENT_CONTEXT copied to the clipboard"
