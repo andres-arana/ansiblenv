@@ -3,7 +3,6 @@
   roles:
     - autojump
     - bash
-    - fzf
     - git
     - nodejs
     - software

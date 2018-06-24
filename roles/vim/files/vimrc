@@ -26,28 +26,17 @@ let NERDTreeMapJumpPrevSibling=''
 let NERDTreeAutoDeleteBuffer=0
 let NERDTreeCascadeOpenSingleChildDir=0
 let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
-" Improved % navigation matching
-Plug 'vim-scripts/matchit.zip'
-" Match HTML tags in % navigation
-Plug 'gregsexton/MatchTag'
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
-" Fuzzy finder and file jumper
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-let g:fzf_command_prefix = 'Fzf'
-nnoremap <leader>zf :FzfFiles<cr>
-nnoremap <leader>zg :FzfGFiles<cr>
-nnoremap <leader>zs :FzfSnippets<cr>
-nnoremap <leader>zc :FzfCommands<cr>
-nnoremap <leader>zm :FzfMaps<cr>
-" Code searching
-Plug 'mileszs/ack.vim'
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-" Argument shuffling
-Plug 'PeterRincker/vim-argumentative'
+" Fuzzy navigation
+Plug 'Shougo/denite.nvim'
+nnoremap <leader>zb :Denite buffer<cr>
+nnoremap <leader>zc :Denite command<cr>
+nnoremap <leader>zf :Denite file/rec<cr>
+nnoremap <leader>zg :Denite -no-empty grep<cr>
+nnoremap <leader>zh :Denite help<cr>
+nnoremap <leader>zr :Denite register<cr>
+nnoremap <leader>zt :Denite filetype<cr>
 " -----------------------------------------------------------------------------
 " UI
 " -----------------------------------------------------------------------------
@@ -55,16 +44,11 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'altercation/vim-colors-solarized'
 let g:solarized_termtrans = 1
 " Powerfull status line
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-" Rainbow parentheses
-Plug 'luochen1990/rainbow'
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-      \   'ctermfgs': ['darkred', 'darkgreen', 'darkyellow', 'darkblue', 'darkcyan', 'darkmagenta'],
-      \}
+Plug 'edkolev/tmuxline.vim'
+let g:airline_powerline_fonts = 0
+let g:tmuxline_powerline_separators = 0
 " -----------------------------------------------------------------------------
 " TMUX
 " -----------------------------------------------------------------------------
@@ -87,10 +71,8 @@ Plug 'tpope/vim-commentary'
 Plug 'cohama/lexima.vim'
 " Surround expressions
 Plug 'tpope/vim-surround'
-" Aligning
-Plug 'junegunn/vim-easy-align'
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
+" Argument shuffling
+Plug 'PeterRincker/vim-argumentative'
 " -----------------------------------------------------------------------------
 " DEVELOPMENT
 " -----------------------------------------------------------------------------
@@ -98,12 +80,9 @@ xmap ga <Plug>(EasyAlign)
 Plug 'w0rp/ale'
 nnoremap <leader>ff :ALEFix<cr>
 let g:ale_fixers = {
-      \ 'javascript': [
-      \     'eslint'
-      \ ],
-      \ 'json': [
-      \     'jq'
-      \ ]
+      \ 'javascript': ['eslint'],
+      \ 'json': ['jq'],
+      \ 'python': ['autopep8'],
       \}
 " Completions
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
@@ -123,19 +102,22 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 nnoremap <leader>s :UltiSnipsEdit<cr>
 " Syntax pack
 Plug 'sheerun/vim-polyglot'
-let g:vim_markdown_conceal = 0
 " Fast expansion for html tags
 Plug 'mattn/emmet-vim'
-let g:user_emmet_settings = {
-      \  'javascript.jsx' : {
-      \      'extends' : 'jsx',
-      \  },
-      \}
-" -----------------------------------------------------------------------------
-" OTHER SYNTAX PLUGINS
-" -----------------------------------------------------------------------------
-Plug 'tjvr/vim-nearley'
 call plug#end()
+
+" *****************************************************************************
+" PLUGIN SETTINGS
+" *****************************************************************************
+" Use ag as the source for denite file/rec
+call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+" Use ag as the source for denite grep
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
 
 " *****************************************************************************
 " INTERNAL MAPPINGS
@@ -150,7 +132,10 @@ nnoremap Q @q
 " Make Y consistent
 nnoremap Y y$
 " Quickly edit vim settings
-nnoremap <leader>ce :tabedit $MYVIMRC<cr>
+nnoremap <leader>ct :tabedit $MYVIMRC<cr>
+nnoremap <leader>ce :edit $MYVIMRC<cr>
+nnoremap <leader>cv :vsplit $MYVIMRC<cr>
+nnoremap <leader>cs :split $MYVIMRC<cr>
 nnoremap <leader>cr :so $MYVIMRC<cr>
 
 " *****************************************************************************
@@ -176,7 +161,7 @@ set nowb
 " Undo settings
 set undodir=~/.vim/undofiles
 set undofile
-" INfo file
+" Info file
 set viminfo+=n~/.vim/viminfo
 " Default indent settings
 set smarttab

@@ -11,9 +11,15 @@
     state: latest
   become: yes
 
-- name: Install jshon for json API parsing
+- name: Install jq for json parsing
   apt:
-    name: jshon
+    name: jq
+    state: latest
+  become: yes
+
+- name: Install htop for process management
+  apt:
+    name: htop
     state: latest
   become: yes
 

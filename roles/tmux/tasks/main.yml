@@ -21,3 +21,8 @@
     src: files/tmux.conf
     dest: ~/.tmux.conf
 
+- name: Setup theme.conf
+  copy:
+    src: files/theme.conf
+    dest: ~/.tmux/theme.conf
+

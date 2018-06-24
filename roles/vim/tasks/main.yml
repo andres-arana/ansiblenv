@@ -13,7 +13,6 @@
       - cmake
       - python
       - python-dev
-      - jq
     state: latest
   become: yes
 
