@@ -205,8 +205,8 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 " UI settings and colorscheme
 set go=
-set gfn=Inconsolata\ 10
+set gfn=Inconsolata\ Nerd\ Font\ Mono\ Medium\ 10
 set t_Co=16
-set background=dark
 colorscheme solarized
+set background=dark
 
