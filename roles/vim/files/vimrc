@@ -37,6 +37,11 @@ nnoremap <leader>zg :Denite -no-empty grep<cr>
 nnoremap <leader>zh :Denite help<cr>
 nnoremap <leader>zr :Denite register<cr>
 nnoremap <leader>zt :Denite filetype<cr>
+" Undo tree navigation
+Plug 'mbbill/undotree'
+nnoremap <leader>u :UndotreeToggle<cr>
+" Quick project-specific commands
+Plug 'tpope/vim-projectionist'
 " -----------------------------------------------------------------------------
 " UI
 " -----------------------------------------------------------------------------
@@ -71,9 +76,10 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'w0rp/ale'
 nnoremap <leader>ff :ALEFix<cr>
 let g:ale_fixers = {
-      \ 'javascript': ['eslint'],
-      \ 'json': ['jq'],
-      \ 'python': ['autopep8'],
+      \ 'vim': ['trim_whitespace'],
+      \ 'javascript': ['eslint', 'trim_whitespace'],
+      \ 'json': ['jq', 'trim_whitespace'],
+      \ 'python': ['autopep8', 'trim_whitespace'],
       \}
 " Completions
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
@@ -95,6 +101,7 @@ nnoremap <leader>s :UltiSnipsEdit<cr>
 Plug 'sheerun/vim-polyglot'
 " Fast expansion for html tags
 Plug 'mattn/emmet-vim'
+
 call plug#end()
 
 " *****************************************************************************
