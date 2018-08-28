@@ -36,7 +36,7 @@ export HISTSIZE=999
 # PATH configuration
 ################################################################################
 # Add the user binaries directory
-export PATH=$PATH:$HOME/.bash.d/bin
+export PATH=$PATH:$HOME/.bash.d/bin:$HOME/.local/bin
 
 ################################################################################
 # Startup settings

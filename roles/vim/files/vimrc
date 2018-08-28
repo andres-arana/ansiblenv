@@ -80,6 +80,7 @@ let g:ale_fixers = {
       \ 'javascript': ['eslint', 'trim_whitespace'],
       \ 'json': ['jq', 'trim_whitespace'],
       \ 'python': ['autopep8', 'trim_whitespace'],
+      \ 'ruby': ['trim_whitespace'],
       \}
 " Completions
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
@@ -121,6 +122,9 @@ call denite#custom#map('insert', '<C-V>', '<denite:do_action:vsplit>')
 call denite#custom#map('insert', '<C-H>', '<denite:do_action:split>')
 call denite#custom#map('insert', '<C-T>', '<denite:do_action:tabopen>')
 call denite#custom#map('insert', '<Esc>', '<denite:enter_mode:normal>')
+call denite#custom#map('noral', '<C-V>', '<denite:do_action:vsplit>')
+call denite#custom#map('noral', '<C-H>', '<denite:do_action:split>')
+call denite#custom#map('noral', '<C-T>', '<denite:do_action:tabopen>')
 
 
 " *****************************************************************************
@@ -199,7 +203,6 @@ set encoding=utf-8
 set laststatus=2
 " Enable the cursorline
 set cursorline
-set cursorcolumn
 " Enable case-ignoring search everywhere
 set ignorecase
 " Enable source concealment
