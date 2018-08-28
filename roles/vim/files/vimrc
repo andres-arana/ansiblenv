@@ -18,6 +18,14 @@ Plug 'tpope/vim-repeat'
 " -----------------------------------------------------------------------------
 " NAVIGATION
 " -----------------------------------------------------------------------------
+" Project explorer
+Plug 'scrooloose/nerdtree'
+let NERDTreeMinimalUI=1
+let NERDTreeMapJumpNextSibling=''
+let NERDTreeMapJumpPrevSibling=''
+let NERDTreeAutoDeleteBuffer=0
+let NERDTreeCascadeOpenSingleChildDir=0
+let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
 " Fuzzy navigation
@@ -114,12 +122,6 @@ call denite#custom#map('insert', '<C-H>', '<denite:do_action:split>')
 call denite#custom#map('insert', '<C-T>', '<denite:do_action:tabopen>')
 call denite#custom#map('insert', '<Esc>', '<denite:enter_mode:normal>')
 
-" *****************************************************************************
-" NETRW MAPPINGS AND SETTINGS
-" *****************************************************************************
-let g:netrw_banner=0
-let g:netrw_hide=0
-let g:netrw_liststyle=3
 
 " *****************************************************************************
 " INTERNAL MAPPINGS
