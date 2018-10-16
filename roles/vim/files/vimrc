@@ -50,7 +50,7 @@ Plug 'altercation/vim-colors-solarized'
 " Powerfull status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
+" Plug 'edkolev/tmuxline.vim'
 let g:airline_powerline_fonts = 0
 let g:tmuxline_powerline_separators = 0
 " -----------------------------------------------------------------------------
@@ -126,6 +126,10 @@ call denite#custom#map('normal', '<C-V>', '<denite:do_action:vsplit>')
 call denite#custom#map('normal', '<C-H>', '<denite:do_action:split>')
 call denite#custom#map('normal', '<C-T>', '<denite:do_action:tabopen>')
 
+" *****************************************************************************
+" Internal optional plugins
+" *****************************************************************************
+packadd! matchit
 
 " *****************************************************************************
 " INTERNAL MAPPINGS
