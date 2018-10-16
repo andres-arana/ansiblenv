@@ -58,6 +58,13 @@ let g:tmuxline_powerline_separators = 0
 " -----------------------------------------------------------------------------
 " Easy tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
+nnoremap <leader>vp :VimuxPromptCommand<cr>
+nnoremap <leader>vl :VimuxRunLastCommand<cr>
+nnoremap <leader>vc :VimuxCloseRunner<cr>
+nnoremap <leader>vz :VimuxZoomRunner<cr>
+nnoremap <leader>vi :VimuxInspectRunner<cr>
+nnoremap <leader>vx :VimuxInterruptRunner<cr>
 " -----------------------------------------------------------------------------
 " TEXT EDITING
 " -----------------------------------------------------------------------------
