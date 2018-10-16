@@ -25,8 +25,5 @@
 [credential]
   helper = cache --timeout=3600
 
-[user]
-  name = Andres Arana
-
 [fetch]
   prune = true
