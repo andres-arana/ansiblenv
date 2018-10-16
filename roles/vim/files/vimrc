@@ -50,7 +50,7 @@ Plug 'altercation/vim-colors-solarized'
 " Powerfull status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 let g:airline_powerline_fonts = 0
 let g:tmuxline_powerline_separators = 0
 " -----------------------------------------------------------------------------
@@ -225,5 +225,4 @@ autocmd GUIEnter * set visualbell t_vb=
 set go=
 set gfn=Inconsolata\ Nerd\ Font\ Mono\ Medium\ 10
 set t_Co=256
-set background=dark
 colorscheme solarized
