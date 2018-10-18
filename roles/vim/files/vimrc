@@ -47,15 +47,15 @@ Plug 'tpope/vim-projectionist'
 " UI
 " -----------------------------------------------------------------------------
 " Colorscheme
-Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 " Powerfull status line
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tmuxline#enabled = 0
 let g:airline_powerline_fonts = 0
 Plug 'edkolev/tmuxline.vim'
 let g:tmuxline_powerline_separators = 0
-let g:tmuxline_theme = 'jellybeans'
+let g:tmuxline_theme = 'airline_insert'
 let g:tmuxline_preset = 'full'
 
 " -----------------------------------------------------------------------------
@@ -235,4 +235,4 @@ if exists('+termguicolors')
   set termguicolors
 endif
 set background=dark
-colorscheme gruvbox
+colorscheme solarized8
