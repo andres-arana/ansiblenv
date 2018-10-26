@@ -9,6 +9,7 @@
 - name: Add google cloud sdk  deb repository
   apt_repository:
     repo: 'deb https://packages.cloud.google.com/apt cloud-sdk-bionic  main'
+    filename: 'gcloud'
     state: present
   become: yes
 
