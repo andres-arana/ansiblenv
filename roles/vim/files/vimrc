@@ -29,15 +29,16 @@ let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
 " Fuzzy navigation
-Plug 'Shougo/denite.nvim'
-nnoremap <leader>zb :Denite buffer<cr>
-nnoremap <leader>zc :Denite command<cr>
-nnoremap <leader>zf :Denite file/rec<cr>
-nnoremap <leader>zg :Denite -no-empty grep<cr>
-nnoremap <leader>zh :Denite help<cr>
-nnoremap <leader>zr :Denite register<cr>
-nnoremap <leader>zt :Denite filetype<cr>
-nnoremap <leader>zl :Denite colorscheme<cr>
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+nnoremap <leader>zf :GFiles!<cr>
+nnoremap <leader>zb :Buffers!<cr>
+nnoremap <leader>zg :Ag!
+nnoremap <leader>z: :History:!<cr>
+nnoremap <leader>z/ :History/!<cr>
+nnoremap <leader>zm :Marks!<cr>
+nnoremap <leader>zc :Commands!<cr>
+nnoremap <leader>zt :Filetypes!<cr>
 " Undo tree navigation
 Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -48,11 +49,13 @@ Plug 'tpope/vim-projectionist'
 " -----------------------------------------------------------------------------
 " Colorscheme
 Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
 " Powerfull status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 0
-
+" Indentation lines
+Plug 'nathanaelkane/vim-indent-guides'
 " -----------------------------------------------------------------------------
 " TMUX
 " -----------------------------------------------------------------------------
@@ -88,6 +91,7 @@ let g:ale_fixers = {
       \ 'json': ['jq', 'trim_whitespace'],
       \ 'python': ['autopep8', 'trim_whitespace'],
       \ 'ruby': ['trim_whitespace'],
+      \ 'typescript': ['tslint'],
       \}
 " Completions
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
@@ -111,27 +115,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 
 call plug#end()
-
-" *****************************************************************************
-" PLUGIN SETTINGS
-" *****************************************************************************
-" Use ag as the source for denite file/rec
-call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-" Use ag as the source for denite grep
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-" Shortcuts to split and tabopen
-call denite#custom#map('insert', '<C-V>', '<denite:do_action:vsplit>')
-call denite#custom#map('insert', '<C-H>', '<denite:do_action:split>')
-call denite#custom#map('insert', '<C-T>', '<denite:do_action:tabopen>')
-call denite#custom#map('insert', '<Esc>', '<denite:enter_mode:normal>')
-call denite#custom#map('normal', '<C-V>', '<denite:do_action:vsplit>')
-call denite#custom#map('normal', '<C-H>', '<denite:do_action:split>')
-call denite#custom#map('normal', '<C-T>', '<denite:do_action:tabopen>')
 
 " *****************************************************************************
 " Internal optional plugins
@@ -216,6 +199,7 @@ set encoding=utf-8
 set laststatus=2
 " Enable the cursorline
 set cursorline
+set cursorcolumn
 " Enable case-ignoring search everywhere
 set ignorecase
 " Disable the bell sounds
@@ -230,4 +214,4 @@ if exists('+termguicolors')
   set termguicolors
 endif
 set background=dark
-colorscheme solarized8
+colorscheme gruvbox

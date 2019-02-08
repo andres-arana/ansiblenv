@@ -1,5 +1,5 @@
 snippet imp
-import $1 from "$2";$0
+import $1 from '$2';$0
 endsnippet
 
 snippet exp
@@ -7,7 +7,7 @@ export ${1:const $2 = $0};
 endsnippet
 
 snippet req
-const $1 = require("${2:$1}");$0
+const $1 = require('${2:$1}');$0
 endsnippet
 
 snippet mod
@@ -64,6 +64,14 @@ switch ($1) {
 }
 endsnippet
 
+snippet try
+try {
+	${0:${VISUAL}}
+} catch (${1:err}) {
+	
+}
+endsnippet
+
 snippet promise
 new Promise((resolve, reject) => {
 	$0
@@ -73,7 +81,7 @@ endsnippet
 snippet action
 export const $1 = (payload) => {
 	${2:return {
-		type: "$3",
+		type: '$3',
 		payload,
 	};}
 };
@@ -90,7 +98,7 @@ export const $1 = (state = $2, action) => {
 endsnippet
 
 snippet component
-import React from "react";
+import React from 'react';
 
 export const $1 = props => {
 	return (
