@@ -68,6 +68,9 @@ nnoremap <leader>vc :VimuxCloseRunner<cr>
 nnoremap <leader>vz :VimuxZoomRunner<cr>
 nnoremap <leader>vi :VimuxInspectRunner<cr>
 nnoremap <leader>vx :VimuxInterruptRunner<cr>
+" Tmux config file editing
+Plug 'tmux-plugins/vim-tmux'
+
 " -----------------------------------------------------------------------------
 " TEXT EDITING
 " -----------------------------------------------------------------------------
