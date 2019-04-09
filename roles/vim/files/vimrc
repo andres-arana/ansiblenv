@@ -15,6 +15,7 @@ nnoremap <leader>pc :PlugClean<cr>
 Plug 'tpope/vim-unimpaired'
 " Repeat complex commands with .
 Plug 'tpope/vim-repeat'
+
 " -----------------------------------------------------------------------------
 " NAVIGATION
 " -----------------------------------------------------------------------------
@@ -42,8 +43,7 @@ nnoremap <leader>zt :Filetypes!<cr>
 " Undo tree navigation
 Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>
-" Quick project-specific commands
-Plug 'tpope/vim-projectionist'
+
 " -----------------------------------------------------------------------------
 " UI
 " -----------------------------------------------------------------------------
@@ -56,6 +56,7 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 0
 " Indentation lines
 Plug 'nathanaelkane/vim-indent-guides'
+
 " -----------------------------------------------------------------------------
 " TMUX
 " -----------------------------------------------------------------------------
@@ -82,6 +83,7 @@ Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
 " Argument shuffling
 Plug 'PeterRincker/vim-argumentative'
+
 " -----------------------------------------------------------------------------
 " DEVELOPMENT
 " -----------------------------------------------------------------------------
@@ -177,7 +179,7 @@ set expandtab
 " Folding settings
 set foldmethod=indent
 set foldnestmax=3
-set nofoldenable
+set foldenable
 " Conceal settings
 set conceallevel=0
 " Wild list
