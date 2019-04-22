@@ -3,6 +3,7 @@
   roles:
     - autojump
     - bash
+    - xfce4terminal
     - git
     - nodejs
     - software
