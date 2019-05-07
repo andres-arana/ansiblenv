@@ -13,6 +13,7 @@
       - cmake
       - python
       - python-dev
+      - universal-ctags
     state: latest
   become: yes
 
@@ -51,3 +52,7 @@
     - js-yaml
     - eslint
     - typescript
+
+- name: Install python dependencies
+  pip:
+    name: jedi
