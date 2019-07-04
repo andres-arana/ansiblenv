@@ -17,6 +17,6 @@
 
 - name: Setup quick colorscheme change
   copy:
-    src: files/xfce4-terminal-theme
+    src: files/toggle-theme
     dest: ~/.bash.d/bin/
 

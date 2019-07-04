@@ -15,6 +15,9 @@ nnoremap <leader>pc :PlugClean<cr>
 Plug 'tpope/vim-unimpaired'
 " Repeat complex commands with .
 Plug 'tpope/vim-repeat'
+" Entire file text object
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
 
 " -----------------------------------------------------------------------------
 " NAVIGATION
@@ -39,8 +42,8 @@ nnoremap <leader>z/ :History/!<cr>
 nnoremap <leader>zm :Marks!<cr>
 nnoremap <leader>zc :Commands!<cr>
 nnoremap <leader>zl :Filetypes!<cr>
-nnoremap <leader>zb :BTags!<cr>
-nnoremap <leader>zt :Tags!<cr>
+nnoremap <leader>ztb :BTags!<cr>
+nnoremap <leader>ztp :Tags!<cr>
 " Undo tree navigation
 Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -49,7 +52,6 @@ nnoremap <leader>u :UndotreeToggle<cr>
 " UI
 " -----------------------------------------------------------------------------
 " Colorscheme
-Plug 'lifepillar/vim-solarized8'
 Plug 'morhetz/gruvbox'
 " Powerfull status line
 Plug 'vim-airline/vim-airline'
@@ -104,6 +106,7 @@ let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']
 let g:ycm_use_ultisnips_complete = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_show_diagnostics_ui = 0
 " Snippets
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'

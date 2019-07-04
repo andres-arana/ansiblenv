@@ -14,14 +14,14 @@
 
 - name: Add NodeSource deb repository
   apt_repository:
-    repo: 'deb https://deb.nodesource.com/node_9.x bionic main'
+    repo: 'deb https://deb.nodesource.com/node_12.x disco main'
     filename: 'nodejs'
     state: present
   become: yes
 
 - name: Add NodeSource deb-src repository
   apt_repository:
-    repo: 'deb-src https://deb.nodesource.com/node_9.x bionic main'
+    repo: 'deb-src https://deb.nodesource.com/node_12.x disco main'
     filename: 'nodejs'
     state: present
   become: yes
@@ -29,5 +29,24 @@
 - name: Install Node.js
   apt:
     name: nodejs
+    state: latest
+  become: yes
+
+- name: Import the Yarn GPG key into apt
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+  become: yes
+
+- name: Add yarn deb repository
+  apt_repository: 
+    repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
+    filename: 'yarn'
+    state: present
+  become: yes
+
+- name: Install Yarn
+  apt:
+    name: yarn
     state: latest
   become: yes

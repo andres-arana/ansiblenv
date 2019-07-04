@@ -51,8 +51,13 @@
     - jsonlint
     - js-yaml
     - eslint
+    - tslint
     - typescript
 
 - name: Install python dependencies
   pip:
-    name: jedi
+    name: "{{ item }}"
+  become: yes
+  with_items:
+    - autopep8
+    - jedi
