@@ -15,9 +15,6 @@ nnoremap <leader>pc :PlugClean<cr>
 Plug 'tpope/vim-unimpaired'
 " Repeat complex commands with .
 Plug 'tpope/vim-repeat'
-" Entire file text object
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
 
 " -----------------------------------------------------------------------------
 " NAVIGATION
@@ -35,6 +32,7 @@ Plug 'kshenoy/vim-signature'
 " Fuzzy navigation
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+nnoremap <leader>zF :Files!<cr>
 nnoremap <leader>zf :GFiles!<cr>
 nnoremap <leader>zg :Ag!
 nnoremap <leader>z: :History:!<cr>
@@ -59,6 +57,9 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 0
 " Indentation lines
 Plug 'nathanaelkane/vim-indent-guides'
+" Delimiter matching
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
 
 " -----------------------------------------------------------------------------
 " TMUX
@@ -86,6 +87,15 @@ Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
 " Argument shuffling
 Plug 'PeterRincker/vim-argumentative'
+" Entire file text object
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
+
+" -----------------------------------------------------------------------------
+" LANGUAGES
+" -----------------------------------------------------------------------------
+" Syntax pack
+Plug 'sheerun/vim-polyglot'
 
 " -----------------------------------------------------------------------------
 " DEVELOPMENT
@@ -116,8 +126,6 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 nnoremap <leader>s :UltiSnipsEdit<cr>
-" Syntax pack
-Plug 'sheerun/vim-polyglot'
 " Fast expansion for html tags
 Plug 'mattn/emmet-vim'
 " Tag file management
@@ -181,6 +189,7 @@ set tabstop=2
 set expandtab
 " Folding settings
 set nofoldenable
+set foldmethod=syntax
 " Conceal settings
 set conceallevel=0
 " Wild list
@@ -210,7 +219,6 @@ set cursorcolumn
 set ignorecase
 " Enable recursive path traversal
 set keywordprg=:help
-set path+=**
 
 " *****************************************************************************
 " VIM UI SETTINGS

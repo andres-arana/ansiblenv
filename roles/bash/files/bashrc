@@ -106,3 +106,5 @@ if [[ -n `ls -A $HOME/.bash.d/` ]]; then
     source $file
   done
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
