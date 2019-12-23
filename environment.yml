@@ -3,11 +3,11 @@
   roles:
     - autojump
     - bash
-    - xfce4terminal
+    - docker
+    - gcloud
     - git
     - nodejs
     - software
     - tmux
     - vim
-    - docker
-    - gcloud
+    - xfce4terminal

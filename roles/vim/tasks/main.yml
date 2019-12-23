@@ -56,8 +56,7 @@
 
 - name: Install python dependencies
   pip:
-    name: "{{ item }}"
+    name:
+      - autopep8
+      - jedi
   become: yes
-  with_items:
-    - autopep8
-    - jedi
