@@ -19,14 +19,6 @@ Plug 'tpope/vim-repeat'
 " -----------------------------------------------------------------------------
 " NAVIGATION
 " -----------------------------------------------------------------------------
-" Project explorer
-Plug 'scrooloose/nerdtree'
-let NERDTreeMinimalUI=1
-let NERDTreeMapJumpNextSibling=''
-let NERDTreeMapJumpPrevSibling=''
-let NERDTreeAutoDeleteBuffer=0
-let NERDTreeCascadeOpenSingleChildDir=0
-let NERDTreeBookmarksFile=expand("$HOME/.vim/bookmarks")
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
 " Fuzzy navigation
@@ -137,6 +129,13 @@ call plug#end()
 " Internal optional plugins
 " *****************************************************************************
 packadd! matchit
+
+" *****************************************************************************
+" Internal plugin configurations
+" *****************************************************************************
+" Netrw
+let g:netrw_banner=0
+autocmd FileType netrw set nolist
 
 " *****************************************************************************
 " INTERNAL MAPPINGS

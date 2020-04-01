@@ -1,5 +1,5 @@
 snippet imp
-import $1 from "$2";$0
+import $1 from '$2';$0
 endsnippet
 
 snippet exp
@@ -14,10 +14,6 @@ snippet mod
 module.exports = $0;
 endsnippet
 
-snippet fnc
-$1(${VISUAL})
-endsnippet
-
 snippet fn
 ($1) => ${2:{
 	$0
@@ -28,10 +24,6 @@ snippet afn
 async ($1) => ${2:{
 	$0
 }}
-endsnippet
-
-snippet const
-const $1 = $0;
 endsnippet
 
 snippet ret
@@ -76,36 +68,5 @@ snippet promise
 new Promise((resolve, reject) => {
 	$0
 })
-endsnippet
-
-snippet action
-export const $1 = (payload) => {
-	${2:return {
-		type: "$3",
-		payload,
-	};}
-};
-endsnippet
-
-snippet reducer
-export const $1 = (state = $2, action) => {
-	switch (action.type) {
-		$0
-		default:
-			return state;
-	}
-};
-endsnippet
-
-snippet component
-import React from "react";
-
-export const $1 = props => {
-	return (
-		$0
-	);
-};
-
-export default $1;
 endsnippet
 
