@@ -8,7 +8,7 @@
 
 - name: Add google cloud sdk  deb repository
   apt_repository:
-    repo: 'deb https://packages.cloud.google.com/apt cloud-sdk-disco  main'
+    repo: 'deb http://packages.cloud.google.com/apt cloud-sdk main'
     filename: 'gcloud'
     state: present
   become: yes

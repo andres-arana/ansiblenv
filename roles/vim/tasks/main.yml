@@ -48,15 +48,5 @@
     name: "{{ item }}"
   become: yes
   with_items:
-    - jsonlint
-    - js-yaml
     - eslint
-    - tslint
     - typescript
-
-- name: Install python dependencies
-  pip:
-    name:
-      - autopep8
-      - jedi
-  become: yes

@@ -92,23 +92,33 @@ Plug 'sheerun/vim-polyglot'
 " -----------------------------------------------------------------------------
 " DEVELOPMENT
 " -----------------------------------------------------------------------------
-" Syntax checking on save
-Plug 'w0rp/ale'
-nnoremap <leader>ff :ALEFix<cr>
-let g:ale_fixers = {
-      \ '*': ['trim_whitespace'],
-      \ 'javascript': ['eslint'],
-      \ 'json': ['jq'],
-      \ 'python': ['autopep8'],
-      \ 'typescript': ['tslint'],
-      \}
-" Completions
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --ts-completer'}
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-let g:ycm_use_ultisnips_complete = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_show_diagnostics_ui = 0
+" Development tools
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-ultisnips',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ ]
+nmap <leader>ddi <Plug>(coc-diagnostic-info)
+nmap <leader>ddn <Plug>(coc-diagnostic-next)
+nmap <leader>ddp <Plug>(coc-diagnostic-prev)
+nmap <leader>djd <Plug>(coc-definition)
+nmap <leader>djc <Plug>(coc-declaration)
+nmap <leader>dji <Plug>(coc-implementation)
+nmap <leader>dlr <Plug>(coc-references)
+nmap <leader>dlc :CocList commands<cr>
+nmap <leader>dla :CocList actions<cr>
+nmap <leader>dld :CocList diagnostics<cr>
+nmap <leader>dlo :CocList outline<cr>
+nmap <leader>daf <Plug>(coc-format)
+nmap <leader>dar <Plug>(coc-rename)
+nmap <leader>daq <Plug>(coc-fix-current)
+nmap <leader>dic :CocCommand 
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 " Snippets
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
@@ -120,8 +130,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 nnoremap <leader>s :UltiSnipsEdit<cr>
 " Fast expansion for html tags
 Plug 'mattn/emmet-vim'
-" Tag file management
-Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -227,7 +235,7 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 " UI settings and colorscheme
 set go=
-set gfn=Inconsolata\ Nerd\ Font\ Mono\ Medium\ 10
+set gfn=JetBrains\ Mono\ Medium\ 9
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"

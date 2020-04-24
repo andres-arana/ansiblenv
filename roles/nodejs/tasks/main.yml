@@ -14,14 +14,14 @@
 
 - name: Add NodeSource deb repository
   apt_repository:
-    repo: 'deb https://deb.nodesource.com/node_12.x disco main'
+    repo: 'deb https://deb.nodesource.com/node_12.x {{ ansible_distribution_release }} main'
     filename: 'nodejs'
     state: present
   become: yes
 
 - name: Add NodeSource deb-src repository
   apt_repository:
-    repo: 'deb-src https://deb.nodesource.com/node_12.x disco main'
+    repo: 'deb-src https://deb.nodesource.com/node_12.x {{ ansible_distribution_release }} main'
     filename: 'nodejs'
     state: present
   become: yes
