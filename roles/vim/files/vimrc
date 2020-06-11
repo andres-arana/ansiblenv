@@ -99,6 +99,7 @@ let g:coc_global_extensions = [
   \ 'coc-ultisnips',
   \ 'coc-tsserver',
   \ 'coc-eslint',
+  \ 'coc-python',
   \ ]
 nmap <leader>ddi <Plug>(coc-diagnostic-info)
 nmap <leader>ddn <Plug>(coc-diagnostic-next)

@@ -7,27 +7,30 @@
 
 - name: Add the docker repository
   apt_repository:
-    repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable'
+    repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu eoan stable'
     filename: 'docker'
     state: present
   become: yes
 
 - name: Ensure docker is installed
   apt:
-    name: docker-ce
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
     state: latest
   become: yes
 
 - name: Ensure docker compose is installed
   get_url:
-    url: https://github.com/docker/compose/releases/download/1.24.0/docker-compose-Linux-x86_64
+    url: https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: "u=rwx,g=rx,o=rx"
   become: yes
 
 - name: Ensure docker compose completion is installed
   get_url:
-    url: https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/completion/bash/docker-compose
+    url: https://raw.githubusercontent.com/docker/compose/1.25.5/contrib/completion/bash/docker-compose
     dest: /etc/bash_completion.d/docker-compose
     mode: "u=rw,g=r,o=r"
   become: yes
