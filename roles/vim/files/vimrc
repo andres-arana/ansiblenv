@@ -41,9 +41,9 @@ nnoremap <leader>u :UndotreeToggle<cr>
 " -----------------------------------------------------------------------------
 " UI
 " -----------------------------------------------------------------------------
-" Colorscheme
+" Color scheme
 Plug 'morhetz/gruvbox'
-" Powerfull status line
+" Powerful status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 0
@@ -94,6 +94,7 @@ Plug 'sheerun/vim-polyglot'
 " -----------------------------------------------------------------------------
 " Development tools
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_disable_startup_warning = 1
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-ultisnips',
@@ -208,7 +209,7 @@ set wildignore=*.o,*.obj,*~
 set scrolloff=3
 set sidescrolloff=7
 set sidescroll=1
-" Load ftplugins and indent files
+" Load ftplugin and indent files
 filetype plugin indent on
 " Turn on syntax highlighting
 syntax on
@@ -220,13 +221,15 @@ set virtualedit=block
 set encoding=utf-8
 " Always display the status line
 set laststatus=2
-" Enable the cursorline
+" Enable the cursor line
 set cursorline
 set cursorcolumn
 " Enable case-ignoring search everywhere
 set ignorecase
 " Enable recursive path traversal
 set keywordprg=:help
+" Enable spell checking
+set spelllang=en_us,es_mx
 
 " *****************************************************************************
 " VIM UI SETTINGS
@@ -234,7 +237,7 @@ set keywordprg=:help
 " Disable the bell sounds
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
-" UI settings and colorscheme
+" UI settings and color scheme
 set go=
 set gfn=JetBrains\ Mono\ Medium\ 9
 if exists('+termguicolors')
@@ -242,5 +245,5 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-set background=dark
+set background=light
 colorscheme gruvbox

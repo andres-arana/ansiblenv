@@ -50,3 +50,8 @@
   with_items:
     - eslint
     - typescript
+
+- name: Install python dependencies
+  apt:
+    name: pylint
+  become: yes
