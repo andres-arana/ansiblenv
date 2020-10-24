@@ -11,8 +11,6 @@
       - silversearcher-ag
       - build-essential
       - cmake
-      - python
-      - python-dev
       - universal-ctags
     state: latest
   become: yes

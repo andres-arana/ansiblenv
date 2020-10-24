@@ -11,21 +11,9 @@
     state: latest
   become: yes
 
-- name: Install jq for json parsing
-  apt:
-    name: jq
-    state: latest
-  become: yes
-
 - name: Install htop for process management
   apt:
     name: htop
-    state: latest
-  become: yes
-
-- name: Install zathura for document viewing
-  apt:
-    name: zathura
     state: latest
   become: yes
 

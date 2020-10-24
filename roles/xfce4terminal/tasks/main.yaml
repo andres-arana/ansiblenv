@@ -19,4 +19,5 @@
   copy:
     src: files/toggle-theme
     dest: ~/.bash.d/bin/
+    mode: u+rwx,g=r,o=r
 
