@@ -23,7 +23,9 @@
   untracked = cyan
 
 [credential]
-  helper = cache --timeout=3600
+	helper = cache --timeout=1800
 
 [fetch]
   prune = true
+[alias]
+	ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"

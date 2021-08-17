@@ -46,12 +46,14 @@ Plug 'morhetz/gruvbox'
 " Powerful status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 " Indentation lines
 Plug 'nathanaelkane/vim-indent-guides'
 " Delimiter matching
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
+" Nice font markers
+Plug 'ryanoasis/vim-devicons'
 
 " -----------------------------------------------------------------------------
 " TMUX
@@ -145,6 +147,14 @@ packadd! matchit
 " *****************************************************************************
 " Netrw
 let g:netrw_banner=0
+" Disable C-l refresh mapping on netrw as it messes up tmux navigation AND you
+" can refresh by either running `:e .` or opening the `.` directory in netrw
+function s:RemoveNetrwMap()
+  if hasmapto('<Plug>NetrwRefresh')
+    unmap <buffer> <C-l>
+  endif
+endfunction
+autocmd FileType netrw call s:RemoveNetrwMap()
 autocmd FileType netrw set nolist
 
 " *****************************************************************************
@@ -239,11 +249,11 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 " UI settings and color scheme
 set go=
-set gfn=JetBrains\ Mono\ Medium\ 9
+set gfn=JetBrainsMono\ Nerd\ Font\ Mono\ Medium\ 9
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-set background=light
+set background=dark
 colorscheme gruvbox
