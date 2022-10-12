@@ -51,5 +51,5 @@
 
 - name: Install python dependencies
   apt:
-    name: pylint
+    name: python3-pip
   become: yes
