@@ -1,14 +1,15 @@
 ---
 
 - name: Import the google cloud sdk key
-  apt_key:
+  get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
+    dest: /etc/apt/keyrings/google-cloud.gpg
+    mode: '0644'
   become: yes
 
 - name: Add google cloud sdk  deb repository
   apt_repository:
-    repo: 'deb http://packages.cloud.google.com/apt cloud-sdk main'
+    repo: 'deb [signed-by=/etc/apt/keyrings/google-cloud.gpg] http://packages.cloud.google.com/apt cloud-sdk main'
     filename: 'gcloud'
     state: present
   become: yes

@@ -34,9 +34,6 @@ nnoremap <leader>zc :Commands!<cr>
 nnoremap <leader>zl :Filetypes!<cr>
 nnoremap <leader>ztb :BTags!<cr>
 nnoremap <leader>ztp :Tags!<cr>
-" Undo tree navigation
-Plug 'mbbill/undotree'
-nnoremap <leader>u :UndotreeToggle<cr>
 
 " -----------------------------------------------------------------------------
 " UI
@@ -52,8 +49,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Delimiter matching
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
-" Nice font markers
-Plug 'ryanoasis/vim-devicons'
 
 " -----------------------------------------------------------------------------
 " TMUX

@@ -7,21 +7,22 @@
   become: yes
 
 - name: Import the NodeSource GPG key into apt
-  apt_key:
+  get_url:
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-    state: present
+    dest: /etc/apt/keyrings/nodesource.asc
+    mode: '0644'
   become: yes
 
 - name: Add NodeSource deb repository
   apt_repository:
-    repo: 'deb https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main'
+    repo: 'deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main'
     filename: 'nodejs'
     state: present
   become: yes
 
 - name: Add NodeSource deb-src repository
   apt_repository:
-    repo: 'deb-src https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main'
+    repo: 'deb-src [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main'
     filename: 'nodejs'
     state: present
   become: yes
@@ -29,24 +30,5 @@
 - name: Install Node.js
   apt:
     name: nodejs
-    state: latest
-  become: yes
-
-- name: Import the Yarn GPG key into apt
-  apt_key:
-    url: https://dl.yarnpkg.com/debian/pubkey.gpg
-    state: present
-  become: yes
-
-- name: Add yarn deb repository
-  apt_repository: 
-    repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
-    filename: 'yarn'
-    state: present
-  become: yes
-
-- name: Install Yarn
-  apt:
-    name: yarn
     state: latest
   become: yes
