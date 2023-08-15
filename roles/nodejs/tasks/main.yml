@@ -15,14 +15,14 @@
 
 - name: Add NodeSource deb repository
   apt_repository:
-    repo: 'deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main'
+    repo: 'deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_18.x {{ ansible_distribution_release }} main'
     filename: 'nodejs'
     state: present
   become: yes
 
 - name: Add NodeSource deb-src repository
   apt_repository:
-    repo: 'deb-src [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_14.x {{ ansible_distribution_release }} main'
+    repo: 'deb-src [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_18.x {{ ansible_distribution_release }} main'
     filename: 'nodejs'
     state: present
   become: yes
