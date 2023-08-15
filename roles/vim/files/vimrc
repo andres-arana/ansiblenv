@@ -81,6 +81,13 @@ Plug 'PeterRincker/vim-argumentative'
 " Entire file text object
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
+" Aligning and table management
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+"
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " -----------------------------------------------------------------------------
 " LANGUAGES
