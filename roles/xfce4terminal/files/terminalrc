@@ -33,7 +33,6 @@ ColorPalette=#282828;#cc241d;#98971a;#d79921;#458588;#b16286;#689d6a;#a89984;#92
 TabActivityColor=#bf4040
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=FALSE
-BackgroundDarkness=0,850000
-BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
+BackgroundDarkness=0,950000
 ScrollingUnlimited=TRUE
 
