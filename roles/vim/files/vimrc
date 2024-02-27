@@ -34,8 +34,7 @@ nnoremap <leader>z/ :History/!<cr>
 nnoremap <leader>zm :Marks!<cr>
 nnoremap <leader>zc :Commands!<cr>
 nnoremap <leader>zl :Filetypes!<cr>
-nnoremap <leader>ztb :BTags!<cr>
-nnoremap <leader>ztp :Tags!<cr>
+nnoremap <leader>zh :Helptags<cr>
 
 " -----------------------------------------------------------------------------
 " UI

@@ -11,11 +11,6 @@
     state: latest
   become: yes
 
-- name: Setup TPM
-  git:
-    repo: https://github.com/tmux-plugins/tpm
-    dest: ~/.tmux/plugins/tpm
-
 - name: Setup .tmux.conf
   copy:
     src: files/tmux.conf
