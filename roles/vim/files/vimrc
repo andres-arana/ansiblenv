@@ -110,21 +110,8 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-vimlsp',
   \ ]
-nmap <leader>ddi <Plug>(coc-diagnostic-info)
-nmap <leader>ddn <Plug>(coc-diagnostic-next)
-nmap <leader>ddp <Plug>(coc-diagnostic-prev)
-nmap <leader>djd <Plug>(coc-definition)
-nmap <leader>djc <Plug>(coc-declaration)
-nmap <leader>dji <Plug>(coc-implementation)
-nmap <leader>dlr <Plug>(coc-references)
-nmap <leader>dlc :CocList commands<cr>
-nmap <leader>dla :CocList actions<cr>
-nmap <leader>dld :CocList diagnostics<cr>
-nmap <leader>dlo :CocList outline<cr>
-nmap <leader>daf <Plug>(coc-format)
-xmap <leader>daf <Plug>(coc-format-selected)
-nmap <leader>dar <Plug>(coc-rename)
-nmap <leader>daq <Plug>(coc-fix-current)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
