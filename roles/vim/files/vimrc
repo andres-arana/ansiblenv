@@ -110,12 +110,34 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-vimlsp',
   \ ]
+" Diagnostics navigation
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+" Refactoring tools
+nmap <leader>rn <Plug>(coc-rename)
+nmap <silent>   <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent>   <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent>   <leader>r  <Plug>(coc-codeaction-refactor-selected)
+" Formatting selected code
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Code actions
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>ac <Plug>(coc-codeaction-cursor)
+nmap <leader>as  <Plug>(coc-codeaction-source)
+" Text objects
 xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 " Snippets
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
