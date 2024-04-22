@@ -1,0 +1,19 @@
+---
+- name: Install fzf
+  apt:
+    name: fzf
+    state: latest
+  become: yes
+
+- name: Install bat for displaying preview window
+  apt:
+    name: bat
+    state: latest
+  become: yes
+
+- name: Install the fzf initializer
+  copy:
+    content: files/fzf.bash
+    dest: ~/.bash.d/fzf.bash
+    force: yes
+

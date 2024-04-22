@@ -2,6 +2,7 @@
 - hosts: localhost
   roles:
     - autojump
+    - fzf
     - bash
     - docker
     - gcloud

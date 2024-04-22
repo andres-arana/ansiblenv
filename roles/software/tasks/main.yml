@@ -17,12 +17,6 @@
     state: latest
   become: yes
 
-- name: Install bat for displaying output
-  apt:
-    name: bat
-    state: latest
-  become: yes
-
 - name: Install archive managers
   apt:
     name:
