@@ -41,6 +41,8 @@ nnoremap <leader>zh :Helptags<cr>
 " -----------------------------------------------------------------------------
 " Color scheme
 Plug 'morhetz/gruvbox'
+let g:gruvbox_italic=1
+let g:gruvbox_transparent_bg=1
 " Powerful status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -84,7 +86,6 @@ Plug 'kana/vim-textobj-entire'
 Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-"
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
