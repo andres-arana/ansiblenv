@@ -8,4 +8,4 @@ cp ~/.tmux/theme.conf roles/tmux/files/theme.conf
 cp ~/.vimrc roles/vim/files/vimrc
 cp ~/.vim/coc-settings.json roles/vim/files/coc-settings.json
 cp -r ~/.vim/ultisnips roles/vim/files/ultisnips
-cp ~/.config/xfce4/terminal/terminalrc roles/xfce4terminal/files/terminalrc
+cp ~/.alacritty.yml roles/alacritty/files/alacritty.yml

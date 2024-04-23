@@ -1,0 +1,11 @@
+---
+- name: Install alacritty
+  apt:
+    name: alacritty
+    state: latest
+  become: yes
+
+- name: Setup terminal config
+  copy:
+    src: files/alacritty.yml
+    dest: ~/.alacritty.yml
