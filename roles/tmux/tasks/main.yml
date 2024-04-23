@@ -16,8 +16,13 @@
     src: files/tmux.conf
     dest: ~/.tmux.conf
 
-- name: Setup theme.conf
+- name: Setup dark theme
   copy:
-    src: files/theme.conf
-    dest: ~/.tmux/theme.conf
+    src: files/tmux-gruvbox-dark.conf
+    dest: ~/.tmux/
+
+- name: Setup light theme
+  copy:
+    src: files/tmux-gruvbox-light.conf
+    dest: ~/.tmux/
 
