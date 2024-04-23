@@ -24,7 +24,7 @@ Plug 'tpope/vim-vinegar'
 " Quick mark navigation
 Plug 'kshenoy/vim-signature'
 " Fuzzy navigation
-Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 nnoremap <leader>zF :Files!<cr>
 nnoremap <leader>zf :GFiles!<cr>
