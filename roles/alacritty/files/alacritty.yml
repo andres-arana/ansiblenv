@@ -44,5 +44,5 @@ colors:
 
 cursor:
   style:
-    shape: Beam
+    shape: Underline
     blinking: Always
