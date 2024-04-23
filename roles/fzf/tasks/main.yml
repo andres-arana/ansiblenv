@@ -13,7 +13,7 @@
 
 - name: Install the fzf initializer
   copy:
-    content: files/fzf.bash
+    src: files/fzf.bash
     dest: ~/.bash.d/fzf.bash
     force: yes
 

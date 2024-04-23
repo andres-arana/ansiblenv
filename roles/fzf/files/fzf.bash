@@ -1,3 +1,3 @@
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --bash)"
+source /usr/share/doc/fzf/examples/key-bindings.bash
 export BAT_THEME='gruvbox-dark'
