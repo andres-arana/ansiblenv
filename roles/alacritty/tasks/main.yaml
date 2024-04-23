@@ -8,4 +8,15 @@
 - name: Setup terminal config
   copy:
     src: files/alacritty.yml
-    dest: ~/.alacritty.yml
+    dest: ~/.config/alacritty/alacritty.yml
+
+- name: Setup dark theme
+  copy:
+    src: files/gruvbox_dark.yaml
+    dest: ~/.config/alacritty/gruvbox_dark.yaml
+
+- name: Setup light theme
+  copy:
+    src: files/gruvbox_light.yaml
+    dest: ~/.config/alacritty/gruvbox_light.yaml
+
