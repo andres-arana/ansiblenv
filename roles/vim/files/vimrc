@@ -112,6 +112,7 @@ let g:coc_global_extensions = [
 " Diagnostics navigation
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <leader>cld :CocList diagnostics<cr>
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
