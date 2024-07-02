@@ -31,3 +31,5 @@
 	ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
 [pull]
 	ff = only
+[push]
+  autoSetupRemote = true
