@@ -1,17 +1,13 @@
 ---
-
-- name: Import the google cloud sdk key
-  get_url:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    dest: /etc/apt/keyrings/google-cloud.asc
-    mode: '0644'
-  become: yes
-
-- name: Add google cloud sdk  deb repository
-  apt_repository:
-    repo: 'deb [signed-by=/etc/apt/keyrings/google-cloud.asc] http://packages.cloud.google.com/apt cloud-sdk main'
-    filename: 'gcloud'
-    state: present
+- name: Add the google cloud sdk repository
+  deb822_repository:
+    name: google-cloud-sdk
+    types: deb
+    uris: http://packages.cloud.google.com/apt
+    suites: cloud-sdk
+    components: main
+    architectures: amd64
+    signed_by: https://packages.cloud.google.com/apt/doc/apt-key.gpg
   become: yes
 
 - name: Install required packages

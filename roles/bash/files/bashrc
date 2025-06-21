@@ -59,10 +59,7 @@ alias ....="cd ../../.."
 alias ~="cd ~"
 
 # Directory listing
-alias ls="ls --color=auto"
-alias ll="ls -lhA"
-alias la="ls -a"
-alias l="ls"
+alias ll="eza -lah --group-directories-first --icons --git -g --time-style long-iso"
 
 # Directory management
 alias mkdir="mkdir -pv"

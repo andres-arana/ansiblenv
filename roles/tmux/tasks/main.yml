@@ -16,13 +16,7 @@
     src: files/tmux.conf
     dest: ~/.tmux.conf
 
-- name: Setup dark theme
-  copy:
-    src: files/tmux-gruvbox-dark.conf
-    dest: ~/.tmux/
-
-- name: Setup light theme
-  copy:
-    src: files/tmux-gruvbox-light.conf
-    dest: ~/.tmux/
-
+- name: Install TPM
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm

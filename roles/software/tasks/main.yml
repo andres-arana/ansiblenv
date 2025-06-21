@@ -17,6 +17,18 @@
     state: latest
   become: yes
 
+- name: Install bat for syntax-aware file displays
+  apt:
+    name: bat
+    state: latest
+  become: yes
+
+- name: Install eza for better directory listings
+  apt:
+    name: eza
+    state: latest
+  become: yes
+
 - name: Install archive managers
   apt:
     name:

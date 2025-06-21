@@ -1,5 +1,6 @@
 [core]
   excludesfile = ~/.gitignore
+	pager = delta
 
 [color]
   branch = auto
@@ -22,14 +23,37 @@
   changed = green
   untracked = cyan
 
-[credential]
-	helper = store --file ~/.gitcredentials
-
 [fetch]
   prune = true
+
 [alias]
-	ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
+  ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
+  graph = log --all --graph --decorate --oneline
+
 [pull]
-	ff = only
+  ff = only
+
 [push]
   autoSetupRemote = true
+
+[commit]
+  verbose = true
+
+[branch]
+  sort = -committerdate
+
+[column]
+  ui = auto
+
+[tag]
+  sort = -version:refname
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictStyle = zdiff3
+
+[delta]
+  navigate = true
+  dark = true
