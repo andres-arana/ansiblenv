@@ -5,6 +5,11 @@
     state: latest
   become: yes
 
+- name: Ensure alacritty config exists
+  file:
+      path: ~/.config/alacritty
+      state: directory
+
 - name: Setup terminal config
   copy:
     src: files/alacritty.yml
