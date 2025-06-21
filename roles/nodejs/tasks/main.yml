@@ -1,23 +1,14 @@
 # Install Node.js using packages crafted by NodeSource
 ---
-- name: Install HTTPS transport for APT
-  apt:
-    name: apt-transport-https
-    state: latest
-  become: yes
-
-- name: Import the NodeSource GPG key into apt
-  get_url:
-    url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
-    dest: /etc/apt/keyrings/nodesource.asc
-    mode: '0644'
-  become: yes
-
-- name: Add NodeSource deb repository
-  apt_repository:
-    repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_22.x nodistro main'
-    filename: 'nodejs'
-    state: present
+- name: Add the nodesource repository
+  deb822_repository:
+    name: nodejs
+    types: deb
+    uris: https://deb.nodesource.com/node_22.x
+    suites: nodistro
+    components: main
+    architectures: amd64
+    signed_by: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
   become: yes
 
 - name: Install Node.js

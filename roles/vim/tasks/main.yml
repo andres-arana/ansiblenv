@@ -56,5 +56,7 @@
 
 - name: Install python dependencies
   apt:
-    name: python3-pip
+    name: 
+      - python3-pip
+      - python3-autopep8
   become: yes

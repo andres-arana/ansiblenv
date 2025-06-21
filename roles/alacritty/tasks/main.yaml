@@ -12,16 +12,16 @@
 
 - name: Setup terminal config
   copy:
-    src: files/alacritty.yml
-    dest: ~/.config/alacritty/alacritty.yml
+    src: files/alacritty.toml
+    dest: ~/.config/alacritty/alacritty.toml
 
 - name: Setup dark theme
   copy:
-    src: files/gruvbox_dark.yaml
-    dest: ~/.config/alacritty/gruvbox_dark.yaml
+    src: files/gruvbox_dark.toml
+    dest: ~/.config/alacritty/gruvbox_dark.toml
 
 - name: Setup light theme
   copy:
-    src: files/gruvbox_light.yaml
-    dest: ~/.config/alacritty/gruvbox_light.yaml
+    src: files/gruvbox_light.toml
+    dest: ~/.config/alacritty/gruvbox_light.toml
 

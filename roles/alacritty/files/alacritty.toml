@@ -1,0 +1,21 @@
+import = ["/home/andres-arana/.config/alacritty/gruvbox_dark.toml"]
+live_config_reload = true
+
+[cursor.style]
+blinking = "Always"
+shape = "Underline"
+
+[font]
+size = 10
+
+[font.normal]
+family = "Inconsolata Nerd Font Mono"
+style = "Bold"
+
+[shell]
+program = "tmux"
+
+[window]
+decorations = "none"
+opacity = 0.95
+startup_mode = "Maximized"

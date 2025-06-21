@@ -1,4 +1,4 @@
 {
   "suggest.noselect": true,
-  other
+  "inlayHint.enable": false,
 }
