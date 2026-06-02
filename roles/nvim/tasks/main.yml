@@ -1,0 +1,28 @@
+---
+- name: Install neovim
+  get_url:
+    url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+    dest: ~/.local/bin/nvim
+    mode: '0755'
+
+- name: Install software dependencies for what we use with vim
+  apt:
+    name:
+      - build-essential
+      - ripgrep
+      - tree-sitter-cli
+    state: latest
+  become: yes
+
+- name: Create .vim directory
+  file:
+    path: ~/.config/nvim/
+    state: directory
+
+- name: Setup neovim config files
+  copy:
+    src: "{{ item }}"
+    dest: ~/.config/nvimn/
+  with_fileglob:
+    - "files/*.*"
+    - "files/.*"

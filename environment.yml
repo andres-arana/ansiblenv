@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  connection: local
   roles:
     - autojump
     - fzf
@@ -11,4 +12,5 @@
     - software
     - tmux
     - vim
+    - nvim
     - alacritty

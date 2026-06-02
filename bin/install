@@ -1,3 +1,5 @@
 #! /bin/bash
+set -euxo pipefail
+
 sudo apt-get install ansible -y
-ansible-playbook environment.yml $*
+ansible-playbook -i "localhost," environment.yml $*
