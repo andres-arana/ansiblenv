@@ -12,6 +12,7 @@
       - build-essential
       - cmake
       - universal-ctags
+      - ripgrep
     state: latest
   become: yes
 
