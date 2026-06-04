@@ -52,12 +52,16 @@ export PATH=$PATH:$HOME/.bash.d/bin:$HOME/.local/bin
 # Startup settings
 ################################################################################
 # Prompt configuration
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_DESCRIBE_STYLE="branch"
-GIT_PS1_SHOWUPSTREAM="auto git"
-export PS1="\n\[\e[36m\]\u\[\e[m\]@\[\e[34m\]\h\[\e[m\]: \w \[\e[33m\]\`__git_ps1\`\[\e[m\]\n(\!:\#) \$ "
+if command -v starship &> /dev/null; then
+  eval "$(starship init bash)"
+else
+  GIT_PS1_SHOWDIRTYSTATE=1
+  GIT_PS1_SHOWSTASHSTATE=1
+  GIT_PS1_SHOWUNTRACKEDFILES=1
+  GIT_PS1_DESCRIBE_STYLE="branch"
+  GIT_PS1_SHOWUPSTREAM="auto git"
+  export PS1="\n\[\e[36m\]\u\[\e[m\]@\[\e[34m\]\h\[\e[m\]: \w \[\e[33m\]\`__git_ps1\`\[\e[m\]\n(\!:\#) \$ "
+fi
 
 ################################################################################
 # Aliases

@@ -1,4 +1,9 @@
 ---
+- name: Install starship prompt
+  apt:
+    name: starship
+    state: latest
+  become: yes
 
 - name: Create the bash extensions directory
   file:
