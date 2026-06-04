@@ -61,6 +61,13 @@ vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv")
 --------------------------------------------------------------------------------
 -- Plugins
 --------------------------------------------------------------------------------
+-- Icons used by many other plugins
+vim.pack.add({
+  "https://github.com/nvim-tree/nvim-web-devicons",
+  "https://github.com/nvim-mini/mini.icons",
+})
+require("mini.icons").setup()
+
 -- Paired mappings
 vim.pack.add({
   "https://github.com/tpope/vim-unimpaired",
@@ -74,11 +81,8 @@ require("marks").setup()
 
 -- Filesystem browser
 vim.pack.add({
-  "https://github.com/nvim-tree/nvim-web-devicons",
-  "https://github.com/nvim-mini/mini.icons",
   "https://github.com/stevearc/oil.nvim",
 })
-require("mini.icons").setup()
 require("oil").setup({
   view_options = {
     show_hidden = true,
@@ -133,7 +137,6 @@ vim.cmd.colorscheme("gruvbox-material")
 
 -- Statusline
 vim.pack.add({
-  "https://github.com/nvim-tree/nvim-web-devicons",
   "https://github.com/nvim-lualine/lualine.nvim"
 })
 require("lualine").setup()
@@ -146,13 +149,9 @@ require("ibl").setup()
 
 -- Notifications window
 vim.pack.add({
-  "https://github.com/nvim-mini/mini.notify",
+  "https://github.com/j-hui/fidget.nvim",
 })
-require("mini.notify").setup({
-  lsp_progress = {
-    enable = false,
-  }
-})
+require("fidget").setup({ })
 
 -- Syntax parsers
 vim.pack.add({
@@ -177,7 +176,7 @@ vim.pack.add({
 })
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "pyright" }
+  ensure_installed = { "lua_ls", "pyright", "ruff", "ts_ls" }
 })
 
 -- Auto completions
@@ -185,6 +184,37 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.completion",
 })
 require("mini.completion").setup()
+
+-- Claude code integration
+vim.pack.add({
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://www.github.com/olimorris/codecompanion.nvim",
+})
+local CodeCompanion = require("codecompanion")
+CodeCompanion.setup({
+  interactions = {
+    cli = {
+      agent = "claude_code",
+      agents = {
+        claude_code = {
+          cmd = "claude",
+          args = {},
+          description = "Claude Code CLI",
+          provider = "terminal",
+        },
+      },
+    },
+  },
+})
+vim.keymap.set({ "n", "v"}, "<leader>cc", function ()
+  return CodeCompanion.cli()
+end)
+vim.keymap.set({"n", "v"}, "<leader>cp", function()
+  return CodeCompanion.cli({ prompt = true })
+end)
+vim.keymap.set({ "n", "v" }, "<leader>ca", function()
+  return CodeCompanion.cli("#{this}", { focus = false })
+end, { desc = "Add context to the CLI agent" })
 
 --------------------------------------------------------------------------------
 -- LSP settings

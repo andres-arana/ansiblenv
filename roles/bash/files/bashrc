@@ -19,9 +19,19 @@ shopt -s checkwinsize
 # Use recursive globs
 shopt -s globstar
 
-# Ensure vi is the default editor
-export EDITOR=vi
-export VISUAL=vi
+# Ensure some flavor of vi is the default editor
+if command -v nvim &> /dev/null; then
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+elif command -v vim &> /dev/null; then
+    export EDITOR='vim'
+    export VISUAL='vim'
+elif command -v vi &> /dev/null; then
+    export EDITOR='vi'
+    export VISUAL='vi'
+else
+    echo "Warning: No preferred text editor (nvim, vim, vi) found." >&2
+fi
 
 ################################################################################
 # History options
@@ -79,7 +89,6 @@ alias chgrp="chgrp --preserve-root"
 # Power management
 alias reboot="sudo shutdown -r now"
 alias poweroff="sudo shutdown -P now"
-
 
 ################################################################################
 # Completions

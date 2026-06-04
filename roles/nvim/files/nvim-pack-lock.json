@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "codecompanion.nvim": {
+      "rev": "60d031862715a77b3655eac724e8926965e47b86",
+      "src": "https://www.github.com/olimorris/codecompanion.nvim"
+    },
+    "fidget.nvim": {
+      "rev": "82404b196e73a00b1727a91903beef5ddc319d22",
+      "src": "https://github.com/j-hui/fidget.nvim"
+    },
     "fzf-lua": {
       "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
       "src": "https://github.com/ibhagwan/fzf-lua"
@@ -48,10 +56,6 @@
       "rev": "520995f1d75da0e4cc901ee95080b1ff2bc46b94",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
-    "mini.notify": {
-      "rev": "7e75de73c60590e3f35d5cecd5677a68a437fc54",
-      "src": "https://github.com/nvim-mini/mini.notify"
-    },
     "mini.surround": {
       "rev": "d12d8e6ea8e4d9d3e6fb0e3ff11c84fcce2299ac",
       "src": "https://github.com/nvim-mini/mini.surround"
@@ -71,6 +75,10 @@
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "rainbow-delimiters.nvim": {
       "rev": "a798325b7f36acc62741d1029930a7b96d4dd4bf",
