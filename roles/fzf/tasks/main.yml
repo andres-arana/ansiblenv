@@ -17,3 +17,9 @@
     dest: ~/.bash.d/fzf.bash
     force: yes
 
+- name: Install fzf-git keybindings
+  copy:
+    src: files/fzf-git.sh
+    dest: ~/.bash.d/fzf-git.bash
+    force: yes
+
