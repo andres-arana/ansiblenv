@@ -176,7 +176,7 @@ vim.pack.add({
 })
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "pyright", "ruff", "ts_ls" }
+  ensure_installed = { "lua_ls", "basedpyright", "ruff", "ts_ls" }
 })
 
 -- Auto completions
@@ -228,3 +228,20 @@ local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_capabilities = require("mini.completion").get_lsp_capabilities()
 local capabilities = vim.tbl_deep_extend("force", lsp_capabilities, cmp_capabilities)
 vim.lsp.config("*", { capabilities = capabilities })
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = {
+        diagnosticSeverityOverrides =
+        {
+          reportExplicitAny = false,
+          reportUnknownVariableType = false,
+          reportUnknownMemberType = false,
+          reportUnknownParameterType = false,
+          reportUnknownArgumentType = false,
+          reportUnknownLambdaType = false,
+        }
+      },
+    },
+  },
+})
