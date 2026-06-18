@@ -1,36 +1,36 @@
 ---
 - name: Install cURL for API http request making
-  apt:
+  ansible.builtin.apt:
     name: curl
     state: latest
-  become: yes
+  become: true
 
 - name: Install tree for better directory listing
-  apt:
+  ansible.builtin.apt:
     name: tree
     state: latest
-  become: yes
+  become: true
 
 - name: Install htop for process management
-  apt:
+  ansible.builtin.apt:
     name: htop
     state: latest
-  become: yes
+  become: true
 
 - name: Install bat for syntax-aware file displays
-  apt:
+  ansible.builtin.apt:
     name: bat
     state: latest
-  become: yes
+  become: true
 
 - name: Install eza for better directory listings
-  apt:
+  ansible.builtin.apt:
     name: eza
     state: latest
-  become: yes
+  become: true
 
 - name: Install archive managers
-  apt:
+  ansible.builtin.apt:
     name:
       - unace
       - unrar
@@ -46,5 +46,4 @@
       - cabextract
       - file-roller
     state: latest
-  become: yes
-
+  become: true

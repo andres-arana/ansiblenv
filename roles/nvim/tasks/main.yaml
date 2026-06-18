@@ -1,28 +1,30 @@
 ---
 - name: Install neovim
-  get_url:
+  ansible.builtin.get_url:
     url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
     dest: ~/.local/bin/nvim
     mode: '0755'
 
-- name: Install software dependencies for what we use with vim
-  apt:
+- name: Install software dependencies for what we use with nvim
+  ansible.builtin.apt:
     name:
       - build-essential
       - ripgrep
       - tree-sitter-cli
     state: latest
-  become: yes
+  become: true
 
-- name: Create .vim directory
-  file:
+- name: Create the nvim config directory
+  ansible.builtin.file:
     path: ~/.config/nvim/
     state: directory
+    mode: '0755'
 
 - name: Setup neovim config files
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: ~/.config/nvim/
+    mode: '0644'
   with_fileglob:
     - "files/*.*"
     - "files/.*"

@@ -1,7 +1,7 @@
 # Install Node.js using packages crafted by NodeSource
 ---
 - name: Add the nodesource repository
-  deb822_repository:
+  ansible.builtin.deb822_repository:
     name: nodejs
     types: deb
     uris: https://deb.nodesource.com/node_22.x
@@ -9,10 +9,11 @@
     components: main
     architectures: amd64
     signed_by: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
-  become: yes
+  become: true
 
 - name: Install Node.js
-  apt:
+  ansible.builtin.apt:
     name: nodejs
     state: latest
-  become: yes
+    update_cache: true
+  become: true

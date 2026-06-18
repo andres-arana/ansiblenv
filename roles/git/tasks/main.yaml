@@ -1,6 +1,6 @@
 ---
 - name: Add the github cli repository
-  deb822_repository:
+  ansible.builtin.deb822_repository:
     name: github-cli
     types: deb
     uris: https://cli.github.com/packages
@@ -8,23 +8,26 @@
     components: main
     architectures: amd64
     signed_by: https://cli.github.com/packages/githubcli-archive-keyring.gpg
-  become: yes
+  become: true
 
 - name: Install git related software
-  apt:
+  ansible.builtin.apt:
     name:
       - tig
       - git
       - gh
     state: latest
-  become: yes
+    update_cache: true
+  become: true
 
 - name: Setup .gitconfig
-  copy:
+  ansible.builtin.copy:
     src: files/gitconfig
     dest: ~/.gitconfig
+    mode: '0644'
 
 - name: Setup .gitignore
-  copy:
+  ansible.builtin.copy:
     src: files/gitignore
     dest: ~/.gitignore
+    mode: '0644'

@@ -1,13 +1,13 @@
 ---
 - name: Install autojump
-  apt:
+  ansible.builtin.apt:
     name: autojump
     state: latest
-  become: yes
+  become: true
 
 - name: Install the autojump initializer
-  copy:
+  ansible.builtin.copy:
     content: ". /usr/share/autojump/autojump.sh"
     dest: ~/.bash.d/autojump.bash
-    force: yes
-
+    force: true
+    mode: '0644'

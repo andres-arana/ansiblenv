@@ -1,27 +1,30 @@
 ---
 - name: Install alacritty
-  apt:
+  ansible.builtin.apt:
     name: alacritty
     state: latest
-  become: yes
+  become: true
 
 - name: Ensure alacritty config exists
-  file:
-      path: ~/.config/alacritty
-      state: directory
+  ansible.builtin.file:
+    path: ~/.config/alacritty
+    state: directory
+    mode: '0755'
 
 - name: Setup terminal config
-  copy:
+  ansible.builtin.copy:
     src: files/alacritty.toml
     dest: ~/.config/alacritty/alacritty.toml
+    mode: '0644'
 
 - name: Setup dark theme
-  copy:
+  ansible.builtin.copy:
     src: files/gruvbox_dark.toml
     dest: ~/.config/alacritty/gruvbox_dark.toml
+    mode: '0644'
 
 - name: Setup light theme
-  copy:
+  ansible.builtin.copy:
     src: files/gruvbox_light.toml
     dest: ~/.config/alacritty/gruvbox_light.toml
-
+    mode: '0644'

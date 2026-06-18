@@ -1,26 +1,30 @@
 ---
 - name: Install starship prompt
-  apt:
+  ansible.builtin.apt:
     name: starship
     state: latest
-  become: yes
+  become: true
 
 - name: Create the bash extensions directory
-  file:
+  ansible.builtin.file:
     dest: ~/.bash.d/
     state: directory
+    mode: '0755'
 
 - name: Create the user binaries directory
-  file:
+  ansible.builtin.file:
     dest: ~/.bash.d/bin/
     state: directory
+    mode: '0755'
 
 - name: Setup .bashrc
-  copy:
+  ansible.builtin.copy:
     src: files/bashrc
     dest: ~/.bashrc
+    mode: '0644'
 
 - name: Setup .bash_profile
-  copy:
+  ansible.builtin.copy:
     src: files/bash_profile
     dest: ~/.bash_profile
+    mode: '0644'

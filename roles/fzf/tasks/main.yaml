@@ -1,25 +1,22 @@
 ---
-- name: Install fzf
-  apt:
-    name: fzf
+- name: Install fzf and bat for the preview window
+  ansible.builtin.apt:
+    name:
+      - fzf
+      - bat
     state: latest
-  become: yes
-
-- name: Install bat for displaying preview window
-  apt:
-    name: bat
-    state: latest
-  become: yes
+  become: true
 
 - name: Install the fzf initializer
-  copy:
+  ansible.builtin.copy:
     src: files/fzf.bash
     dest: ~/.bash.d/fzf.bash
-    force: yes
+    force: true
+    mode: '0644'
 
 - name: Install fzf-git keybindings
-  copy:
+  ansible.builtin.copy:
     src: files/fzf-git.sh
     dest: ~/.bash.d/fzf-git.bash
-    force: yes
-
+    force: true
+    mode: '0644'

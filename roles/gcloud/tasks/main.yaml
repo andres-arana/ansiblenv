@@ -1,25 +1,27 @@
 ---
 - name: Add the google cloud sdk repository
-  deb822_repository:
+  ansible.builtin.deb822_repository:
     name: google-cloud-sdk
     types: deb
-    uris: http://packages.cloud.google.com/apt
+    uris: https://packages.cloud.google.com/apt
     suites: cloud-sdk
     components: main
     architectures: amd64
     signed_by: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-  become: yes
+  become: true
 
 - name: Install required packages
-  apt:
+  ansible.builtin.apt:
     name:
       - google-cloud-sdk
       - kubectl
     state: latest
-  become: yes
+    update_cache: true
+  become: true
 
 - name: Install the kubectl bash completion
-  copy:
+  ansible.builtin.copy:
     content: "source <(kubectl completion bash)"
     dest: ~/.bash.d/kubectl.bash
-    force: yes
+    force: true
+    mode: '0644'
