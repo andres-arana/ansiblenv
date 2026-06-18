@@ -1,6 +1,5 @@
 [core]
   excludesfile = ~/.gitignore
-	pager = delta
 
 [color]
   branch = auto
@@ -48,13 +47,5 @@
 [tag]
   sort = -version:refname
 
-[interactive]
-  diffFilter = delta --color-only
-
 [merge]
   conflictStyle = zdiff3
-
-[delta]
-  navigate = true
-  dark = true
-  side-by-side = true

@@ -1,15 +1,9 @@
 ---
 - name: Install git related software
   apt:
-    name: 
+    name:
       - tig
       - git
-    state: latest
-  become: yes
-
-- name: Install delta for better diff paging
-  apt:
-    name: bat
     state: latest
   become: yes
 
