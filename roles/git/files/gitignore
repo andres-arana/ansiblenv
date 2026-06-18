@@ -2,3 +2,5 @@
 .tmux
 .ycm_extra_conf.py
 tags
+
+**/.claude/settings.local.json
