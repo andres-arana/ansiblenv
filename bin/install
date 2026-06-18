@@ -2,4 +2,4 @@
 set -euxo pipefail
 
 sudo apt-get install ansible -y
-ansible-playbook -i "localhost," environment.yml $*
+ansible-playbook -i "localhost," environment.yaml $*

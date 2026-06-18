@@ -1,0 +1,30 @@
+---
+- name: Add the github cli repository
+  deb822_repository:
+    name: github-cli
+    types: deb
+    uris: https://cli.github.com/packages
+    suites: stable
+    components: main
+    architectures: amd64
+    signed_by: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+  become: yes
+
+- name: Install git related software
+  apt:
+    name:
+      - tig
+      - git
+      - gh
+    state: latest
+  become: yes
+
+- name: Setup .gitconfig
+  copy:
+    src: files/gitconfig
+    dest: ~/.gitconfig
+
+- name: Setup .gitignore
+  copy:
+    src: files/gitignore
+    dest: ~/.gitignore

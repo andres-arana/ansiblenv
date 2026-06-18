@@ -22,7 +22,7 @@
 - name: Setup neovim config files
   copy:
     src: "{{ item }}"
-    dest: ~/.config/nvimn/
+    dest: ~/.config/nvim/
   with_fileglob:
     - "files/*.*"
     - "files/.*"
