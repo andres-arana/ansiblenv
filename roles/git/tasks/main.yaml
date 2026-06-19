@@ -31,3 +31,10 @@
     src: files/gitignore
     dest: ~/.gitignore
     mode: '0644'
+
+- name: Install gh shell completions
+  ansible.builtin.copy:
+    src: files/gh-completion.bash
+    dest: ~/.bash.d/gh-completion.bash
+    force: true
+    mode: '0644'
