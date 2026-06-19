@@ -1,0 +1,11 @@
+[Unit]
+Description=Prune docker system on boot
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker system prune -f --volumes
+
+[Install]
+WantedBy=multi-user.target
