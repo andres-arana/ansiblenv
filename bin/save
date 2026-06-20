@@ -15,11 +15,6 @@ cp ~/.gitignore roles/git/files/gitignore
 # Tmux
 cp ~/.tmux.conf roles/tmux/files/tmux.conf
 
-# Vim
-cp ~/.vimrc roles/vim/files/vimrc
-cp ~/.vim/coc-settings.json roles/vim/files/coc-settings.json
-cp -r ~/.vim/ultisnips roles/vim/files/ultisnips
-
 # nVim
 cp ~/.config/nvim/* roles/nvim/files/
 cp ~/.config/nvim/.* roles/nvim/files/
