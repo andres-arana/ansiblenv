@@ -98,7 +98,7 @@ do
     "https://github.com/tpope/vim-unimpaired",
   })
 
-  -- Mark navigatio
+  -- Mark navigation
   vim.pack.add({
     "https://github.com/chentoast/marks.nvim",
   })
@@ -214,44 +214,6 @@ do
   })
   require("rainbow-delimiters.setup").setup()
 
-  -- Claude code integration
-  vim.pack.add({
-    "https://github.com/nvim-lua/plenary.nvim",
-    "https://www.github.com/olimorris/codecompanion.nvim",
-  })
-  local CodeCompanion = require("codecompanion")
-  CodeCompanion.setup({
-    display = {
-      cli = {
-        window = {
-          width = 0.3
-        },
-      },
-    },
-    interactions = {
-      cli = {
-        agent = "claude_code",
-        agents = {
-          claude_code = {
-            cmd = "claude",
-            args = {},
-            description = "Claude Code CLI",
-            provider = "terminal",
-          },
-        },
-      },
-    },
-  })
-  vim.keymap.set({ "n", "v"}, "<leader>cc", function ()
-    return CodeCompanion.cli()
-  end)
-  vim.keymap.set({"n", "v"}, "<leader>cp", function()
-    return CodeCompanion.cli({ prompt = true })
-  end)
-  vim.keymap.set({ "n", "v" }, "<leader>ca", function()
-    return CodeCompanion.cli("#{this}", { focus = false })
-  end, { desc = "Add context to the CLI agent" })
-
   -- LSP
   vim.pack.add({
     "https://github.com/neovim/nvim-lspconfig",
@@ -298,6 +260,9 @@ do
         auto_show = true,
       },
     },
+    signature = {
+      enabled = true,
+    },
     fuzzy = { implementation = "lua" },
     snippets = { preset = "mini_snippets" },
   })
@@ -305,13 +270,6 @@ do
   vim.lsp.config("*", { capabilities = capabilities })
 end
 
--- Markdown rendering
-vim.pack.add({
-  "https://github.com/meanderingprogrammer/render-markdown.nvim"
-})
-require("render-markdown").setup({
-
-})
 --------------------------------------------------------------------------------
 -- LSP settings
 --------------------------------------------------------------------------------
