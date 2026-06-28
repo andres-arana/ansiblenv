@@ -1,5 +1,7 @@
 # Tab-complete profile names for `cl` (the executable in ~/.bash.d/bin). Profiles
 # are directories under ~/.config/claude, excluding the `shared` common layer.
+# At position 1 also offer `--create`; its argument is a new (nonexistent) profile
+# name, so there's nothing to complete past it.
 _cl_complete() {
   if [[ "$COMP_CWORD" -ne 1 ]]; then
     return
@@ -8,6 +10,6 @@ _cl_complete() {
   local profiles
   profiles="$(find "$base" -mindepth 1 -maxdepth 1 -type d ! -name shared \
     -printf '%f\n' 2>/dev/null)"
-  mapfile -t COMPREPLY < <(compgen -W "$profiles" -- "${COMP_WORDS[COMP_CWORD]}")
+  mapfile -t COMPREPLY < <(compgen -W "--create $profiles" -- "${COMP_WORDS[COMP_CWORD]}")
 }
 complete -F _cl_complete cl
