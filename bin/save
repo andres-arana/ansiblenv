@@ -18,3 +18,6 @@ cp ~/.tmux.conf roles/tmux/files/tmux.conf
 # nVim
 cp ~/.config/nvim/* roles/nvim/files/
 cp ~/.config/nvim/.* roles/nvim/files/
+
+# Claude
+cp ~/.config/claude/CLAUDE.md roles/claude/files/CLAUDE.md

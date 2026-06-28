@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# `cl <profile> [claude args...]` — launch Claude Code with a config profile.
+# Profiles live under ~/.config/claude/<profile> (e.g. gfw, obs); each profile's
+# CLAUDE.md imports the common layer at ~/.config/claude/CLAUDE.md via `@../CLAUDE.md`.
+# That common file sits beside the profile dirs but isn't one (find -type d skips
+# it), so it needs no special-casing. Extracted from the old `prefix d` tmux
+# binding. Lives in ~/.local/bin (on PATH) so it resolves "anywhere" — including
+# tmux's `sh -c` shell-commands behind the split/new-window/popup bindings, which
+# don't source ~/.bashrc. Named `cl` (not `cc`) to avoid the C-compiler clash.
+# Extra args after the profile pass through to `claude`.
+set -euo pipefail
+
+base="$HOME/.config/claude"
+
+if [[ "${1:-}" == "--create" ]]; then
+  name="${2:-}"
+  if [[ -z "$name" ]]; then
+    echo "usage: cl --create <profile>" >&2
+    exit 1
+  fi
+  dir="$base/$name"
+  if [[ -e "$dir" ]]; then
+    echo "cl: profile '$name' already exists ($dir)" >&2
+    exit 1
+  fi
+  mkdir -p "$dir"
+  printf '@../CLAUDE.md\n' > "$dir/CLAUDE.md"
+  echo "created profile '$name' ($dir); launch it with: cl $name"
+  exit 0
+fi
+
+profile="${1:-}"
+
+if [[ -z "$profile" ]]; then
+  echo "usage: cl <profile> [claude args...]" >&2
+  echo "       cl --create <profile>" >&2
+  echo "profiles:" >&2
+  find "$base" -mindepth 1 -maxdepth 1 -type d \
+    -printf '  %f\n' 2>/dev/null | sort >&2
+  exit 1
+fi
+shift
+
+dir="$base/$profile"
+if [[ ! -d "$dir" ]]; then
+  echo "cl: unknown profile '$profile' (no $dir)" >&2
+  exit 1
+fi
+
+exec env CLAUDE_CONFIG_DIR="$dir" claude "$@"

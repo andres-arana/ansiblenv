@@ -1,0 +1,30 @@
+# Install Claude Code and lay down the shared global config
+---
+- name: Create the user binaries directory
+  ansible.builtin.file:
+    path: ~/.local/bin/
+    state: directory
+    mode: '0755'
+
+- name: Install Claude Code via the native installer
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://claude.ai/install.sh | bash
+    creates: "{{ ansible_env.HOME }}/.local/bin/claude"
+
+- name: Install the cl profile launcher
+  ansible.builtin.copy:
+    src: files/cl
+    dest: ~/.local/bin/cl
+    mode: '0755'
+
+- name: Create the shared claude config directory
+  ansible.builtin.file:
+    path: ~/.config/claude/
+    state: directory
+    mode: '0755'
+
+- name: Setup the global CLAUDE.md
+  ansible.builtin.copy:
+    src: files/CLAUDE.md
+    dest: ~/.config/claude/CLAUDE.md
+    mode: '0644'

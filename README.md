@@ -56,6 +56,7 @@ roles you don't want, or add ones you do:
 | **docker** | Docker CE from Docker's apt repo: engine, CLI, `containerd`, and the Compose plugin. |
 | **gcloud** | Google Cloud SDK and `kubectl` from Google's apt repo, with `kubectl` bash completion. |
 | **nodejs** | Node.js 22.x from the NodeSource apt repo. |
+| **claude** | Claude Code (Anthropic CLI) via the native installer into `~/.local/bin`, plus the shared `~/.config/claude/` directory and the global `CLAUDE.md`. |
 
 ## Notes
 
