@@ -17,6 +17,12 @@
     dest: ~/.local/bin/cl
     mode: '0755'
 
+- name: Install the cl CLI completions
+  ansible.builtin.copy:
+    src: files/claude.bash
+    dest: ~/.bash.d/claude.bash
+    mode: '0644'
+
 - name: Create the shared claude config directory
   ansible.builtin.file:
     path: ~/.config/claude/
