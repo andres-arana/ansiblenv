@@ -5,6 +5,12 @@
     state: latest
   become: true
 
+- name: Install eza for the ll alias in .bashrc
+  ansible.builtin.apt:
+    name: eza
+    state: latest
+  become: true
+
 - name: Create the bash extensions directory
   ansible.builtin.file:
     dest: ~/.bash.d/
