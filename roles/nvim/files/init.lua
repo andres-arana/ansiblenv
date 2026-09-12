@@ -67,19 +67,47 @@ do
   -- Hightlight after yanking for feedback
   vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
-    callback = function() vim.hl.on_yank() end,
+    callback = function()
+      vim.hl.on_yank()
+    end,
   })
 end
 --------------------------------------------------------------------------------
 -- Standard mappings
 --------------------------------------------------------------------------------
 do
-  vim.keymap.set("n", "<leader>pu", function() vim.pack.update(nil) end)
-  vim.keymap.set("n", "<leader>ps", function() vim.pack.update(nil, { offline = true }) end)
-  vim.keymap.set("n", "<leader>ce", function() vim.cmd.edit("$MYVIMRC") end)
-  vim.keymap.set("n", "<leader>ct", function() vim.cmd.tabedit("$MYVIMRC") end)
+  -- 0.12 has no "remove everything the config no longer adds" command, so build
+  -- the list by hand. Replace with the native `vim.pack.del()` idiom (or
+  -- `:packdel ++all`) once 0.13 lands. Only effective after a `:restart`: a
+  -- plugin dropped from init.lua stays active in the session that loaded it.
+  local function del_inactive_plugins()
+    local inactive = vim
+      .iter(vim.pack.get(nil, { info = false }))
+      :filter(function(p)
+        return not p.active
+      end)
+      :map(function(p)
+        return p.spec.name
+      end)
+      :totable()
+    -- Guard: vim.pack.del() warns on an empty list
+    if #inactive > 0 then
+      vim.pack.del(inactive)
+    end
+  end
+
+  vim.keymap.set("n", "<leader>pu", function()
+    del_inactive_plugins()
+    vim.pack.update(nil)
+  end)
+  vim.keymap.set("n", "<leader>ce", function()
+    vim.cmd.edit("$MYVIMRC")
+  end)
+  vim.keymap.set("n", "<leader>ct", function()
+    vim.cmd.tabedit("$MYVIMRC")
+  end)
   vim.keymap.set("n", "<leader>cr", ":restart<cr>")
-  vim.keymap.set({"n", "v"}, "gf", ":edit <cfile><cr>")
+  vim.keymap.set({ "n", "v" }, "gf", ":edit <cfile><cr>")
   vim.keymap.set("t", "<leader><esc>", "<C-\\><C-n>")
 end
 --------------------------------------------------------------------------------
@@ -120,10 +148,18 @@ do
     "https://github.com/ibhagwan/fzf-lua",
   })
   local fzf = require("fzf-lua")
-  vim.keymap.set("n", "<leader>ff", function() fzf.files() end)
-  vim.keymap.set("n", "<leader>fg", function() fzf.live_grep() end)
-  vim.keymap.set("n", "<leader>fla", function() fzf.lsp_code_actions() end)
-  vim.keymap.set("n", "<leader>fc", function() fzf.builtin() end)
+  vim.keymap.set("n", "<leader>ff", function()
+    fzf.files()
+  end)
+  vim.keymap.set("n", "<leader>fg", function()
+    fzf.live_grep()
+  end)
+  vim.keymap.set("n", "<leader>fla", function()
+    fzf.lsp_code_actions()
+  end)
+  vim.keymap.set("n", "<leader>fc", function()
+    fzf.builtin()
+  end)
 
   -- Text objects
   vim.pack.add({
@@ -135,12 +171,12 @@ do
       g = function()
         local from = { line = 1, col = 1 }
         local to = {
-          line = vim.fn.line('$'),
-          col = math.max(vim.fn.getline('$'):len(), 1)
+          line = vim.fn.line("$"),
+          col = math.max(vim.fn.getline("$"):len(), 1),
         }
         return { from = from, to = to }
-      end
-    }
+      end,
+    },
   })
 
   -- Surround text
@@ -151,21 +187,19 @@ do
 
   -- Align columns
   vim.pack.add({
-    "https://github.com/nvim-mini/mini.align"
+    "https://github.com/nvim-mini/mini.align",
   })
   require("mini.align").setup()
 
-  -- Move text around
-  vim.pack.add({ 'https://github.com/nvim-mini/mini.move' })
-  require("mini.move").setup()
-
   -- Spilt and join argument lists
-  vim.pack.add({ 'https://github.com/nvim-mini/mini.splitjoin' })
+  vim.pack.add({
+    "https://github.com/nvim-mini/mini.splitjoin",
+  })
   require("mini.splitjoin").setup()
 
   -- Highlight and remove trailing whitespace
   vim.pack.add({
-    "https://github.com/nvim-mini/mini.trailspace"
+    "https://github.com/nvim-mini/mini.trailspace",
   })
   local MiniTrailspace = require("mini.trailspace")
   MiniTrailspace.setup()
@@ -182,7 +216,7 @@ do
 
   -- Statusline
   vim.pack.add({
-    "https://github.com/nvim-lualine/lualine.nvim"
+    "https://github.com/nvim-lualine/lualine.nvim",
   })
   require("lualine").setup({
     extensions = { "oil" },
@@ -190,7 +224,7 @@ do
 
   -- Indent guides
   vim.pack.add({
-    "https://github.com/nvim-mini/mini.indentscope"
+    "https://github.com/nvim-mini/mini.indentscope",
   })
   require("mini.indentscope").setup()
 
@@ -198,11 +232,13 @@ do
   vim.pack.add({
     "https://github.com/j-hui/fidget.nvim",
   })
-  require("fidget").setup({ })
+  require("fidget").setup({
+    override_vim_notify = true,
+  })
 
   -- Syntax parsers
   vim.pack.add({
-    "https://github.com/romus204/tree-sitter-manager.nvim"
+    "https://github.com/romus204/tree-sitter-manager.nvim",
   })
   require("tree-sitter-manager").setup({
     auto_install = true,
@@ -219,17 +255,19 @@ do
     "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/mason-org/mason-lspconfig.nvim",
-
   })
   require("mason").setup()
   require("mason-lspconfig").setup({
     ensure_installed = {
       "lua_ls",
-      "basedpyright", "ruff",
-      "ts_ls",
+      "stylua",
+      "basedpyright",
+      "ruff",
+      "vtsls",
+      "biome",
       "bashls",
       "terraformls",
-    }
+    },
   })
 
   -- Snippets
@@ -246,10 +284,7 @@ do
 
   -- Auto completions
   vim.pack.add({
-    {
-      src = "https://github.com/saghen/blink.cmp",
-      version = "v1",
-    }
+    { src = "https://github.com/saghen/blink.cmp", version = "v1" },
   })
   require("blink.cmp").setup({
     keymap = {
@@ -279,9 +314,9 @@ do
     signs = {
       text = {
         [vim.diagnostic.severity.ERROR] = "",
-        [vim.diagnostic.severity.WARN]  = "",
-        [vim.diagnostic.severity.INFO]  = "",
-        [vim.diagnostic.severity.HINT]  = "  ",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.INFO] = "",
+        [vim.diagnostic.severity.HINT] = "  ",
       },
     },
   })
@@ -290,37 +325,33 @@ do
     virtual_text = true,
   })
   -- Toggle diagnostic details
-  vim.keymap.set("n", "<leader>dv", function ()
+  vim.keymap.set("n", "<leader>dv", function()
     vim.diagnostic.config({
-      virtual_text = not vim.diagnostic.config().virtual_text
+      virtual_text = not vim.diagnostic.config().virtual_text,
     })
   end)
 
-  -- Specific lsp server settings
-  vim.lsp.config("basedpyright", {
-    settings = {
-      basedpyright = {
-        analysis = {
-          diagnosticSeverityOverrides =
-          {
-            reportExplicitAny = false,
-            reportAny = false,
-            reportUnknownVariableType = false,
-            reportUnknownMemberType = false,
-            reportUnknownParameterType = false,
-            reportUnknownArgumentType = false,
-            reportUnknownLambdaType = false,
-            reportMissingTypeArgument = false,
-          }
-        },
-      },
-    },
-  })
+  -- Which server owns formatting for its filetypes. Everything else gets its
+  -- formatting capability stripped on attach: vim.lsp.formatexpr() (what gq runs)
+  -- takes the *first* attached client advertising rangeFormatting, so leaving two
+  -- formatting-capable servers on one buffer lets attach order decide silently.
+  -- Add a server here when it should be the formatter, not just the LSP.
+  local formatters = {
+    biome = true, -- js/ts/json, over vtsls
+    ruff = true, -- python, over basedpyright
+    stylua = true, -- lua, over lua_ls
+    bashls = true,
+    terraformls = true,
+  }
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      if not client or formatters[client.name] then
+        return
+      end
 
-  vim.lsp.config("bigquery-language-server", {
-    cmd = { "uv", "run", "bigquery-language-server" },
-    filetypes = { "sql" },
-    root_markers = { "pyproject.toml" },
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end,
   })
-  vim.lsp.enable("bigquery-language-server")
 end

@@ -1,0 +1,7 @@
+# Also acts as the root marker that makes nvim-lspconfig start `stylua --lsp`
+# for this directory. StyLua defaults to tabs at width 4, so these have to be
+# spelled out to match the editor settings in init.lua.
+column_width = 80
+indent_type = "Spaces"
+indent_width = 2
+quote_style = "ForceDouble"
