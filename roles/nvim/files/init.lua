@@ -257,17 +257,39 @@ do
     "https://github.com/mason-org/mason-lspconfig.nvim",
   })
   require("mason").setup()
+  -- Everything Mason installs, plus who owns formatting for each filetype.
+  -- A server marked `format = false` gets its formatting capability stripped on
+  -- attach: vim.lsp.formatexpr() (what gq runs) takes the *first* attached client
+  -- advertising rangeFormatting, so leaving two formatting-capable servers on one
+  -- buffer lets attach order decide silently.
+  local servers = {
+    -- Lua
+    lua_ls = { format = false }, -- stylua wins
+    stylua = {},
+    -- Python
+    basedpyright = { format = false }, -- ruff wins
+    ruff = {},
+    -- JS / TS
+    vtsls = { format = false }, -- biome wins
+    biome = {},
+    -- Others
+    bashls = {},
+    terraformls = {},
+  }
   require("mason-lspconfig").setup({
-    ensure_installed = {
-      "lua_ls",
-      "stylua",
-      "basedpyright",
-      "ruff",
-      "vtsls",
-      "biome",
-      "bashls",
-      "terraformls",
-    },
+    ensure_installed = vim.tbl_keys(servers),
+  })
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      local spec = client and servers[client.name]
+      if not spec or spec.format ~= false then
+        return
+      end
+
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end,
   })
 
   -- Snippets
@@ -330,28 +352,4 @@ do
       virtual_text = not vim.diagnostic.config().virtual_text,
     })
   end)
-
-  -- Which server owns formatting for its filetypes. Everything else gets its
-  -- formatting capability stripped on attach: vim.lsp.formatexpr() (what gq runs)
-  -- takes the *first* attached client advertising rangeFormatting, so leaving two
-  -- formatting-capable servers on one buffer lets attach order decide silently.
-  -- Add a server here when it should be the formatter, not just the LSP.
-  local formatters = {
-    biome = true, -- js/ts/json, over vtsls
-    ruff = true, -- python, over basedpyright
-    stylua = true, -- lua, over lua_ls
-    bashls = true,
-    terraformls = true,
-  }
-  vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-      if not client or formatters[client.name] then
-        return
-      end
-
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
-    end,
-  })
 end
