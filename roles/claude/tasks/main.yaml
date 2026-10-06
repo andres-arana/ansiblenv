@@ -9,7 +9,7 @@
 - name: Install Claude Code via the native installer
   ansible.builtin.shell:
     cmd: curl -fsSL https://claude.ai/install.sh | bash
-    creates: "{{ ansible_env.HOME }}/.local/bin/claude"
+    creates: "{{ ansible_facts.env.HOME }}/.local/bin/claude"
 
 - name: Install the cl profile launcher
   ansible.builtin.copy:
