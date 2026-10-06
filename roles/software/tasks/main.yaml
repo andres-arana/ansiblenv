@@ -36,8 +36,6 @@
       - unrar
       - zip
       - unzip
-      - p7zip-full
-      - p7zip-rar
       - sharutils
       - rar
       - uudeview
