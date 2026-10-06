@@ -15,7 +15,7 @@ bin/install --tags <tag>     # run only tagged tasks
 bin/save                     # copy live dotfiles from $HOME back into roles/*/files/
 ```
 
-Most tasks use `become`, so a real run prompts for sudo and changes the host machine — don't run `bin/install` without being asked; prefer `--check` to validate.
+`ansible.cfg` points Ansible at `inventory` (localhost, local connection, Python pinned to `/usr/bin/python3`), so Ansible commands must run from the repo root. Most tasks use `become`, so a real run prompts for sudo and changes the host machine — don't run `bin/install` without being asked; prefer `--check` to validate.
 
 ## Architecture
 
