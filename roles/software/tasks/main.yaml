@@ -45,3 +45,58 @@
       - file-roller
     state: latest
   become: true
+
+- name: Install fd for fast file finding
+  ansible.builtin.apt:
+    name: fd-find
+    state: latest
+  become: true
+
+- name: Create the user binaries directory
+  ansible.builtin.file:
+    path: ~/.local/bin/
+    state: directory
+    mode: '0755'
+
+# Ubuntu ships the binary as fdfind to avoid a name clash with an unrelated package.
+- name: Expose fdfind as fd
+  ansible.builtin.file:
+    src: /usr/bin/fdfind
+    dest: ~/.local/bin/fd
+    state: link
+    force: true
+
+# UV_NO_MODIFY_PATH keeps the installer away from ~/.bashrc, which the bash role owns.
+- name: Install uv via the standalone installer
+  ansible.builtin.shell:
+    cmd: curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="$HOME/.local/bin" UV_NO_MODIFY_PATH=1 sh
+    creates: "{{ ansible_facts.env.HOME }}/.local/bin/uv"
+
+- name: Check for a newer uv
+  ansible.builtin.command: "{{ ansible_facts.env.HOME }}/.local/bin/uv self update --dry-run"
+  register: uv_update_check
+  changed_when: false
+
+- name: Upgrade uv
+  ansible.builtin.command: "{{ ansible_facts.env.HOME }}/.local/bin/uv self update"
+  when: "'Would update' in uv_update_check.stdout + uv_update_check.stderr"
+  changed_when: true
+
+# uv reports added/removed packages as " + pkg" / " - pkg" lines on stderr; a no-op
+# run prints none, which is how a re-run stays unchanged.
+- name: Install or upgrade uv tools
+  ansible.builtin.command:
+    argv: "{{ ['uv', 'tool', 'install', '--upgrade', item.name]
+      + (item.with | default([]) | map('regex_replace', '^', '--with=') | list) }}"
+  environment:
+    PATH: "{{ ansible_facts.env.HOME }}/.local/bin:{{ ansible_facts.env.PATH }}"
+  register: uv_tool_install
+  changed_when: uv_tool_install.stderr is search('^ [+-] ', multiline=True)
+  loop:
+    - name: huggingface-hub
+    - name: mkdocs
+      with:
+        - mkdocs-material
+        - mkdocs-panzoom-plugin
+  loop_control:
+    label: "{{ item.name }}"

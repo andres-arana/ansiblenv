@@ -5,6 +5,13 @@
     dest: ~/.local/bin/nvim
     mode: '0755'
 
+- name: Add the v shortcut for nvim
+  ansible.builtin.file:
+    src: "{{ ansible_facts.env.HOME }}/.local/bin/nvim"
+    dest: ~/.local/bin/v
+    state: link
+    force: true
+
 - name: Install software dependencies for what we use with nvim
   ansible.builtin.apt:
     name:
