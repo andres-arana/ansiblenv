@@ -1,0 +1,71 @@
+---
+# Runs once per entry in claude_profiles, with CLAUDE_CONFIG_DIR pointing at that
+# profile (set by the include in main.yaml), so every claude command below acts on it.
+- name: Create the {{ profile.key }} profile directory
+  ansible.builtin.file:
+    path: "{{ claude_config_dir }}/{{ profile.key }}/"
+    state: directory
+    mode: '0755'
+
+- name: Setup the {{ profile.key }} profile CLAUDE.md
+  ansible.builtin.copy:
+    src: "files/profiles/{{ profile.key }}/CLAUDE.md"
+    dest: "{{ claude_config_dir }}/{{ profile.key }}/CLAUDE.md"
+    mode: '0644'
+
+- name: Work out the {{ profile.key }} profile's plugins and marketplaces
+  ansible.builtin.set_fact:
+    claude_profile_plugins: "{{ claude_global_plugins + profile.value.plugins | default([]) }}"
+    claude_profile_marketplaces: >-
+      {{ (claude_global_plugins + profile.value.plugins | default([]))
+         | map('split', '@') | map('last') | unique | list }}
+
+# Fetch failures (e.g. a private repo before `gh auth login`) are collected and
+# reported below instead of failing the run.
+- name: Add marketplaces to the {{ profile.key }} profile
+  ansible.builtin.command: "{{ claude_bin }} plugin marketplace add {{ claude_marketplaces[item] }} --json"
+  loop: "{{ claude_profile_marketplaces }}"
+  register: claude_marketplace_add
+  failed_when: false
+  changed_when: claude_marketplace_add.rc == 0 and 'already on disk' not in claude_marketplace_add.stdout
+
+- name: Refresh existing marketplaces in the {{ profile.key }} profile
+  ansible.builtin.command: "{{ claude_bin }} plugin marketplace update {{ item.item }} --json"
+  loop: "{{ claude_marketplace_add.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.rc == 0 and 'already on disk' in item.stdout
+  register: claude_marketplace_update
+  failed_when: false
+  changed_when: false
+
+- name: Collect marketplaces that couldn't be fetched for the {{ profile.key }} profile
+  ansible.builtin.set_fact:
+    claude_unavailable_marketplaces: >-
+      {{ (claude_marketplace_add.results | rejectattr('rc', 'equalto', 0) | map(attribute='item') | list)
+         + (claude_marketplace_update.results | selectattr('rc', 'defined')
+            | rejectattr('rc', 'equalto', 0) | map(attribute='item.item') | list) }}
+
+- name: Warn about skipped marketplaces in the {{ profile.key }} profile
+  ansible.builtin.debug:
+    msg: >-
+      WARNING: couldn't fetch marketplace {{ item }} ({{ claude_marketplaces[item] }}) for the
+      {{ profile.key }} profile, so its plugins were skipped. Check GitHub access
+      (e.g. `gh auth login`) and re-run bin/install.
+  loop: "{{ claude_unavailable_marketplaces }}"
+
+- name: Install plugins in the {{ profile.key }} profile
+  ansible.builtin.command: "{{ claude_bin }} plugin install {{ item }} --json"
+  loop: "{{ claude_profile_plugins }}"
+  when: item.split('@') | last not in claude_unavailable_marketplaces
+  register: claude_plugin_install
+  changed_when: "'already installed' not in claude_plugin_install.stdout"
+
+- name: Update plugins in the {{ profile.key }} profile
+  ansible.builtin.command: "{{ claude_bin }} plugin update {{ item.item }} --json"
+  loop: "{{ claude_plugin_install.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.stdout is defined and 'already installed' in item.stdout
+  register: claude_plugin_update
+  changed_when: (claude_plugin_update.stdout_lines | last | from_json).updateOutcome != 'up_to_date'

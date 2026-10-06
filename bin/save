@@ -23,3 +23,7 @@ cp ~/.config/nvim/.* roles/nvim/files/
 
 # Claude
 cp ~/.config/claude/CLAUDE.md roles/claude/files/CLAUDE.md
+for profile in roles/claude/files/profiles/*/; do
+  name="$(basename "$profile")"
+  cp ~/.config/claude/"$name"/CLAUDE.md "$profile"CLAUDE.md
+done

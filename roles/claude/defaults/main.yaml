@@ -1,0 +1,21 @@
+---
+claude_bin: "{{ ansible_facts.env.HOME }}/.local/bin/claude"
+claude_config_dir: "{{ ansible_facts.env.HOME }}/.config/claude"
+
+# Marketplace name -> GitHub repo it's fetched from.
+claude_marketplaces:
+  andres: andres-arana/claude-plugins
+  gfw-data-engineering: GlobalFishingWatch/claude-data-engineering-plugins
+
+# Installed in every profile below.
+claude_global_plugins:
+  - personal@andres
+
+# Profile name -> plugins installed only in that profile. Each profile also needs
+# its CLAUDE.md under files/profiles/<name>/.
+claude_profiles:
+  gfw:
+    plugins:
+      - gfw-pipes@gfw-data-engineering
+  obs:
+    plugins: []

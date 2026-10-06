@@ -34,3 +34,14 @@
     src: files/CLAUDE.md
     dest: ~/.config/claude/CLAUDE.md
     mode: '0644'
+
+- name: Setup the Claude config profiles and their plugins
+  ansible.builtin.include_tasks:
+    file: profile.yaml
+    apply:
+      environment:
+        CLAUDE_CONFIG_DIR: "{{ claude_config_dir }}/{{ profile.key }}"
+  loop: "{{ claude_profiles | dict2items }}"
+  loop_control:
+    loop_var: profile
+    label: "{{ profile.key }}"
