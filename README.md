@@ -47,7 +47,6 @@ roles you don't want, or add ones you do:
 | **bash** | `starship` prompt, `~/.bashrc` and `~/.bash_profile`, and a `~/.bash.d/` directory that the other roles drop shell snippets into. |
 | **software** | General CLI utilities: `curl`, `tree`, `htop`, `bat`, `eza`, plus a broad set of archive managers (`zip`, `unzip`, `p7zip`, `rar`, `unrar`, `arj`, etc.). |
 | **git** | `git`, `tig`, and the GitHub CLI (`gh`); installs `~/.gitconfig` and `~/.gitignore`. |
-| **vim** | `vim-gtk3` with build tooling (`cmake`, `build-essential`, `universal-ctags`, `silversearcher-ag`, `ripgrep`), vim-plug, CoC settings, UltiSnips snippets, and global `eslint`/`typescript`/python lint deps. |
 | **nvim** | Latest Neovim (AppImage) into `~/.local/bin`, plus `ripgrep`, `tree-sitter-cli`, `build-essential`, and the Neovim config under `~/.config/nvim/`. |
 | **tmux** | `tmux`, `xclip` for clipboard integration, `~/.tmux.conf`, and TPM (tmux plugin manager). |
 | **alacritty** | Alacritty terminal emulator, plus its config and Gruvbox dark/light themes under `~/.config/alacritty/`. |
