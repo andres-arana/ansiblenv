@@ -49,3 +49,11 @@
 
 [merge]
   conflictStyle = zdiff3
+  tool = "nvim"
+
+[mergetool]
+  keepBackup = false
+  prompt = false
+
+[mergetool "nvim"]
+  cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
