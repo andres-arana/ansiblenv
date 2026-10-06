@@ -11,6 +11,7 @@ cp ~/.bashrc roles/bash/files/bashrc
 # Git
 cp ~/.gitconfig roles/git/files/gitconfig
 cp ~/.gitignore roles/git/files/gitignore
+cp ~/.config/gh/config.yml roles/git/files/gh-config.yml
 # cp ~/.tigrc roles/git/files/tigrc
 
 # Tmux

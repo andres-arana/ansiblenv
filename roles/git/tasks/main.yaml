@@ -16,6 +16,7 @@
       - tig
       - git
       - gh
+      - libnotify-bin
     state: latest
     update_cache: true
   become: true
@@ -38,6 +39,30 @@
     dest: ~/.bash.d/gh-completion.bash
     force: true
     mode: '0644'
+
+- name: Create the gh config directory
+  ansible.builtin.file:
+    path: ~/.config/gh/
+    state: directory
+    mode: '0771'
+
+- name: Setup gh config and aliases
+  ansible.builtin.copy:
+    src: files/gh-config.yml
+    dest: ~/.config/gh/config.yml
+    mode: '0600'
+
+- name: Create the user binaries directory
+  ansible.builtin.file:
+    path: ~/.local/bin/
+    state: directory
+    mode: '0755'
+
+- name: Install the gh-ci PR checks notifier used by the `gh ci` alias
+  ansible.builtin.copy:
+    src: files/gh-ci
+    dest: ~/.local/bin/gh-ci
+    mode: '0755'
 
 - name: Setup tig gruvbox colorscheme (matches alacritty theme)
   ansible.builtin.copy:

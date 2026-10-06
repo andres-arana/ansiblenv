@@ -1,0 +1,11 @@
+# The current version of the config schema
+version: 1
+git_protocol: https
+editor: nvim
+prompt: enabled
+pager:
+aliases:
+    co: pr checkout
+    ci: '!gh-ci "$@"'
+http_unix_socket:
+browser:

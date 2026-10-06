@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# `gh ci [<pr>] [gh pr checks flags...]` — watch a PR's checks, then send a desktop
+# notification with the outcome. Invoked through the `ci` gh alias (set by the git
+# role); lives in ~/.local/bin so the alias's `sh -c` finds it without .bashrc.
+# Right after a push GitHub may still report the previous commit's checks, so keep
+# using `git push && sleep 20 && gh ci`.
+set -uo pipefail
+
+selector=()
+if [[ $# -gt 0 && "$1" != -* ]]; then
+  selector=("$1")
+  shift
+fi
+
+# Named from the PR itself so a URL to another repo's PR reports that repo.
+label="$(gh pr view "${selector[@]}" --json number,url \
+  --jq '"\(.url | split("/")[3:5] | join("/")) - PR #\(.number)"')" || exit
+
+# gh may handle SIGINT and exit normally; don't report a Ctrl-C as a failed run.
+trap 'exit 130' INT
+
+gh pr checks "${selector[@]}" --watch "$@"
+status=$?
+
+if [[ $status -eq 0 ]]; then
+  notify-send "$label checks passed" || true
+else
+  notify-send --urgency=critical "$label checks failed" || true
+fi
+
+exit "$status"
