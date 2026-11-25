@@ -36,11 +36,15 @@ fi
 ################################################################################
 # History options
 ################################################################################
-# Bash History
-export HISTCONTROL=erasedups
+# Drop duplicates, and skip commands typed with a leading space
+export HISTCONTROL=ignoreboth:erasedups
 
-# Resize history size
-export HISTSIZE=999
+# Unlimited history, in memory and on disk, so fzf's Ctrl-R can search all of it
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+
+# Record when each command ran
+export HISTTIMEFORMAT='%F %T '
 
 ################################################################################
 # PATH configuration
@@ -62,6 +66,12 @@ else
   GIT_PS1_SHOWUPSTREAM="auto git"
   export PS1="\n\[\e[36m\]\u\[\e[m\]@\[\e[34m\]\h\[\e[m\]: \w \[\e[33m\]\`__git_ps1\`\[\e[m\]\n(\!:\#) \$ "
 fi
+
+# Write each command to the history file right away so concurrent shells (tmux
+# panes) see each other's history. Appended after the prompt init because
+# starship overwrites PROMPT_COMMAND, and after starship_precmd so that still
+# sees the real exit status.
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
 
 ################################################################################
 # Aliases
