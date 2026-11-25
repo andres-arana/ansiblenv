@@ -36,7 +36,7 @@
 
 - name: Install gh shell completions
   ansible.builtin.copy:
-    src: files/gh-completion.bash
+    content: 'eval "$(gh completion -s bash)"'
     dest: ~/.bash.d/gh-completion.bash
     force: true
     mode: '0644'
