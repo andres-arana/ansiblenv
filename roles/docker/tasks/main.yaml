@@ -22,6 +22,26 @@
     update_cache: "{{ docker_repo is changed }}"
   become: true
 
+# Without limits, json-file logs grow forever. Only containers created after the
+# restart pick this up; existing ones keep their old settings until recreated.
+# This overwrites any existing daemon.json.
+- name: Configure the docker daemon (log rotation)
+  ansible.builtin.copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  register: docker_daemon_config
+
+- name: Restart docker to apply the daemon config
+  ansible.builtin.systemd_service:
+    name: docker
+    state: restarted
+  become: true
+  when: docker_daemon_config is changed
+
 - name: Install the docker prune service
   ansible.builtin.copy:
     src: docker-prune.service
