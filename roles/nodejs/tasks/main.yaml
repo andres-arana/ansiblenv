@@ -10,10 +10,11 @@
     architectures: amd64
     signed_by: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
   become: true
+  register: nodesource_repo
 
 - name: Install Node.js
   ansible.builtin.apt:
     name: nodejs
     state: latest
-    update_cache: true
+    update_cache: "{{ nodesource_repo is changed }}"
   become: true

@@ -9,6 +9,7 @@
     architectures: amd64
     signed_by: https://download.docker.com/linux/ubuntu/gpg
   become: true
+  register: docker_repo
 
 - name: Ensure docker is installed
   ansible.builtin.apt:
@@ -18,7 +19,7 @@
       - docker-compose-plugin
       - containerd.io
     state: latest
-    update_cache: true
+    update_cache: "{{ docker_repo is changed }}"
   become: true
 
 - name: Install the docker prune service

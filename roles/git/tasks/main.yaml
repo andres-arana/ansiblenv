@@ -9,6 +9,7 @@
     architectures: amd64
     signed_by: https://cli.github.com/packages/githubcli-archive-keyring.gpg
   become: true
+  register: github_cli_repo
 
 - name: Install git related software
   ansible.builtin.apt:
@@ -18,7 +19,7 @@
       - gh
       - libnotify-bin
     state: latest
-    update_cache: true
+    update_cache: "{{ github_cli_repo is changed }}"
   become: true
 
 - name: Setup .gitconfig

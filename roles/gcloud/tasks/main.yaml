@@ -9,6 +9,7 @@
     architectures: amd64
     signed_by: https://packages.cloud.google.com/apt/doc/apt-key.gpg
   become: true
+  register: gcloud_repo
 
 - name: Install required packages
   ansible.builtin.apt:
@@ -16,7 +17,7 @@
       - google-cloud-sdk
       - kubectl
     state: latest
-    update_cache: true
+    update_cache: "{{ gcloud_repo is changed }}"
   become: true
 
 - name: Install the kubectl bash completion
