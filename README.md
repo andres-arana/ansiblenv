@@ -45,7 +45,7 @@ roles you don't want, or add ones you do:
 | Role | What it installs / configures |
 |------|-------------------------------|
 | **bash** | `starship` prompt, `~/.bashrc` and `~/.bash_profile`, and a `~/.bash.d/` directory that the other roles drop shell snippets into. |
-| **software** | General CLI utilities: `curl`, `tree`, `htop`, `bat`, `eza`, `fd`, plus a broad set of archive managers (`zip`, `unzip`, `rar`, `unrar`, `arj`, etc.). Also `uv` (upgraded on every run) and uv tools: the Hugging Face CLI (`hf`) and `mkdocs` with `mkdocs-material` and `mkdocs-panzoom-plugin`. |
+| **software** | General CLI utilities: `curl`, `tree`, `htop`, `bat`, `eza`, `fd`, `jq`, plus a broad set of archive managers (`zip`, `unzip`, `rar`, `unrar`, `arj`, etc.). Also `uv` (upgraded on every run) and uv tools: the Hugging Face CLI (`hf`) and `mkdocs` with `mkdocs-material` and `mkdocs-panzoom-plugin`. |
 | **git** | `git`, `tig`, and the GitHub CLI (`gh`); installs `~/.gitconfig`, `~/.gitignore`, and gh's config/aliases, including `gh ci [<pr>]` (watches PR checks and sends a desktop notification when they finish). |
 | **nvim** | Latest Neovim (AppImage) into `~/.local/bin` with a `v` shortcut, plus `ripgrep`, `tree-sitter-cli`, `build-essential`, and the Neovim config under `~/.config/nvim/`. |
 | **tmux** | `tmux`, `xclip` for clipboard integration, `~/.tmux.conf`, and TPM (tmux plugin manager). |

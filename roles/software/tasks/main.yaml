@@ -29,6 +29,12 @@
     state: latest
   become: true
 
+- name: Install jq for JSON processing
+  ansible.builtin.apt:
+    name: jq
+    state: latest
+  become: true
+
 - name: Install archive managers
   ansible.builtin.apt:
     name:
