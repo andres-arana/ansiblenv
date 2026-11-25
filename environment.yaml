@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   roles:
-    - autojump
+    - zoxide
     - fzf
     - bash
     - docker

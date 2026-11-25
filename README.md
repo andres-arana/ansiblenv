@@ -32,7 +32,7 @@ roles you don't want, or add ones you do:
 - hosts: localhost
   connection: local
   roles:
-    - autojump
+    - zoxide
     - fzf
     - bash
     # - docker     # disabled: skip docker on this machine
@@ -51,7 +51,7 @@ roles you don't want, or add ones you do:
 | **tmux** | `tmux`, `xclip` for clipboard integration, `~/.tmux.conf`, and TPM (tmux plugin manager). |
 | **alacritty** | Alacritty terminal emulator, the Inconsolata Nerd Font it is configured to use (installed to `~/.local/share/fonts`), plus its config and Gruvbox dark/light themes under `~/.config/alacritty/`. |
 | **fzf** | `fzf` fuzzy finder with `bat` previews, plus shell init and fzf-git keybindings. |
-| **autojump** | `autojump` directory jumping with its shell initializer. |
+| **zoxide** | `zoxide` directory jumping with its shell initializer, exposed as `j` / `ji`. Also removes the `autojump` this role replaced. |
 | **docker** | Docker CE from Docker's apt repo: engine, CLI, `containerd`, and the Compose plugin. |
 | **gcloud** | Google Cloud SDK and `kubectl` from Google's apt repo, with `kubectl` bash completion. |
 | **nodejs** | Node.js 22.x from the NodeSource apt repo. |

@@ -1,13 +1,28 @@
 ---
-- name: Install autojump
+- name: Install zoxide
   ansible.builtin.apt:
-    name: autojump
+    name: zoxide
     state: latest
   become: true
 
-- name: Install the autojump initializer
+# --cmd j exposes the commands as j / ji instead of z / zi.
+- name: Install the zoxide initializer
   ansible.builtin.copy:
-    content: ". /usr/share/autojump/autojump.sh"
-    dest: ~/.bash.d/autojump.bash
+    content: 'eval "$(zoxide init bash --cmd j)"'
+    dest: ~/.bash.d/zoxide.bash
     force: true
     mode: '0644'
+
+# Migration from the autojump role this one replaced. Two jumpers hooking the
+# prompt would conflict, so machines provisioned earlier are cleaned up here.
+- name: Remove autojump
+  ansible.builtin.apt:
+    name: autojump
+    state: absent
+    purge: true
+  become: true
+
+- name: Remove the autojump initializer
+  ansible.builtin.file:
+    path: ~/.bash.d/autojump.bash
+    state: absent
