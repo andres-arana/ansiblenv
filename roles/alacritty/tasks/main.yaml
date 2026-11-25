@@ -5,6 +5,31 @@
     state: latest
   become: true
 
+- name: Ensure the user fonts directory exists
+  ansible.builtin.file:
+    path: ~/.local/share/fonts
+    state: directory
+    mode: '0755'
+
+# alacritty.toml uses "Inconsolata Nerd Font Mono". Only the Mono variants are
+# extracted; the archive also carries proportional ones. Not upgraded on re-runs:
+# `creates` skips the download once the Regular face is present.
+- name: Install the Inconsolata Nerd Font
+  ansible.builtin.unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Inconsolata.tar.xz
+    dest: ~/.local/share/fonts
+    remote_src: true
+    include:
+      - InconsolataNerdFontMono-Regular.ttf
+      - InconsolataNerdFontMono-Bold.ttf
+    creates: ~/.local/share/fonts/InconsolataNerdFontMono-Regular.ttf
+  register: nerd_font
+
+- name: Refresh the font cache
+  ansible.builtin.command: fc-cache -f ~/.local/share/fonts
+  when: nerd_font is changed
+  changed_when: true
+
 - name: Ensure alacritty config exists
   ansible.builtin.file:
     path: ~/.config/alacritty
