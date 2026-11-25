@@ -57,6 +57,19 @@ roles you don't want, or add ones you do:
 | **nodejs** | Node.js 22.x from the NodeSource apt repo. |
 | **claude** | Claude Code (Anthropic CLI) via the native installer into `~/.local/bin`, plus the shared `~/.config/claude/` directory and the global `CLAUDE.md`, the `cl <profile>` launcher, and the `gfw`/`obs` config profiles with their plugin marketplaces and plugins (installed and updated on every run). Profiles and plugins are declared in `roles/claude/defaults/main.yaml`; logging in to each profile stays manual. |
 
+## Per-person setup after install
+
+`bin/install` overwrites `~/.gitconfig` on every run, so don't use
+`git config --global` for personal settings; they would be lost. Set your
+identity in `~/.gitconfig.local`, which the managed config includes:
+
+```bash
+git config -f ~/.gitconfig.local user.name "Your Name"
+git config -f ~/.gitconfig.local user.email "you@example.com"
+```
+
+Logging in to `gh` and to each Claude profile is also manual.
+
 ## Notes
 
 - Targets Ubuntu/Debian — roles use `apt` and `deb822_repository`.

@@ -1,10 +1,8 @@
 [core]
   excludesfile = ~/.gitignore
 
-[color]
-  branch = auto
-  diff = auto
-  status = auto
+[init]
+  defaultBranch = master
 
 [color "branch"]
   current = yellow reverse
@@ -32,6 +30,20 @@
 [pull]
   ff = only
 
+[rebase]
+  autoSquash = true
+  autoStash = true
+
+[rerere]
+  enabled = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+
+[help]
+  autocorrect = prompt
+
 [push]
   autoSetupRemote = true
 
@@ -57,3 +69,9 @@
 
 [mergetool "nvim"]
   cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+
+# Per-person settings (user.name, user.email, ...). This file is overwritten by
+# bin/install, so identity lives in ~/.gitconfig.local instead. Keep this last
+# so local values win. Silently ignored if the file doesn't exist.
+[include]
+  path = ~/.gitconfig.local
