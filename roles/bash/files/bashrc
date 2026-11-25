@@ -19,6 +19,15 @@ shopt -s checkwinsize
 # Use recursive globs
 shopt -s globstar
 
+# Correct minor typos in cd arguments
+shopt -s cdspell
+
+# Correct minor typos in directory names during completion
+shopt -s dirspell
+
+# Warn about running or stopped jobs instead of exiting right away
+shopt -s checkjobs
+
 # Ensure some flavor of vi is the default editor
 if command -v nvim &> /dev/null; then
     export EDITOR='nvim'
