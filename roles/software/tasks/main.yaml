@@ -64,6 +64,14 @@
     state: directory
     mode: '0755'
 
+# Ubuntu ships bat as batcat to avoid a name clash with an unrelated package.
+- name: Expose batcat as bat
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: ~/.local/bin/bat
+    state: link
+    force: true
+
 # Ubuntu ships the binary as fdfind to avoid a name clash with an unrelated package.
 - name: Expose fdfind as fd
   ansible.builtin.file:
