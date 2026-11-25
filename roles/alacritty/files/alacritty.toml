@@ -14,8 +14,13 @@ program = "tmux"
 
 [window]
 decorations  = "none"
-opacity      = 1
+opacity      = 0.95
 startup_mode = "Maximized"
+
+# Apply the opacity to every cell background, not just the default one, so
+# tmux and nvim (which paint explicit backgrounds) are transparent too.
+[colors]
+transparent_background_colors = true
 
 [general]
 live_config_reload = true
