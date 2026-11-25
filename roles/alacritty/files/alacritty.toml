@@ -19,7 +19,7 @@ startup_mode = "Maximized"
 
 [general]
 live_config_reload = true
-import             = ["~/.config/alacritty/gruvbox_dark.toml"]
+import             = ["~/.config/alacritty/gruvbox.toml"]
 
 [env]
 TERM = "alacritty"

@@ -42,14 +42,8 @@
     dest: ~/.config/alacritty/alacritty.toml
     mode: '0644'
 
-- name: Setup dark theme
+- name: Setup the gruvbox theme
   ansible.builtin.copy:
-    src: files/gruvbox_dark.toml
-    dest: ~/.config/alacritty/gruvbox_dark.toml
-    mode: '0644'
-
-- name: Setup light theme
-  ansible.builtin.copy:
-    src: files/gruvbox_light.toml
-    dest: ~/.config/alacritty/gruvbox_light.toml
+    src: files/gruvbox.toml
+    dest: ~/.config/alacritty/gruvbox.toml
     mode: '0644'

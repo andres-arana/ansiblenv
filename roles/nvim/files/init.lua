@@ -212,6 +212,7 @@ do
   vim.pack.add({
     { src = "https://github.com/sainnhe/gruvbox-material" },
   })
+  vim.o.background = "dark"
   vim.cmd.colorscheme("gruvbox-material")
 
   -- Statusline

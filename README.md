@@ -49,7 +49,7 @@ roles you don't want, or add ones you do:
 | **git** | `git`, `tig`, and the GitHub CLI (`gh`); installs `~/.gitconfig`, `~/.gitignore`, and gh's config/aliases, including `gh ci [<pr>]` (watches PR checks and sends a desktop notification when they finish). |
 | **nvim** | Latest Neovim (AppImage) into `~/.local/bin` with a `v` shortcut, plus `ripgrep`, `tree-sitter-cli`, `build-essential`, and the Neovim config under `~/.config/nvim/`. |
 | **tmux** | `tmux`, `xclip` for clipboard integration, `~/.tmux.conf`, and TPM (tmux plugin manager). |
-| **alacritty** | Alacritty terminal emulator, the Inconsolata Nerd Font it is configured to use (installed to `~/.local/share/fonts`), plus its config and Gruvbox dark/light themes under `~/.config/alacritty/`. |
+| **alacritty** | Alacritty terminal emulator, the Inconsolata Nerd Font it is configured to use (installed to `~/.local/share/fonts`), plus its config and Gruvbox (dark) theme under `~/.config/alacritty/`. |
 | **fzf** | `fzf` fuzzy finder using `fd` for listing and `bat`/`eza` previews, plus shell init and fzf-git keybindings. |
 | **zoxide** | `zoxide` directory jumping with its shell initializer, exposed as `j` / `ji`. |
 | **docker** | Docker CE from Docker's apt repo: engine, CLI, `containerd`, and the Compose plugin, with container log rotation (10 MB x 3 files) configured in `/etc/docker/daemon.json`. |
